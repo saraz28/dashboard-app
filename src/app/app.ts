@@ -1,9 +1,10 @@
+import { SharedModule } from './shared/shared-module';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,SharedModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

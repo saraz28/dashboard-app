@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    // display: flex;
+    // flex-direction: column;
+    // width: 100%;
+    font-family: "Nunito Sans", Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-sidenav-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+* {
+    font-family: "Nunito Sans", Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+    --primary-color: #6200ea;
+    --secondary-color: #4880FF;
+}
+
+button {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.text-gray {
+    color: #202224;
+    opacity: 70%;
+}
