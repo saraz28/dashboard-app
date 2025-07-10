@@ -1,106 +1,127 @@
 
 <div class="container">
 
-    <div class="row justify-content-center">
-        <div class="col-5 col-lg-12">
-            <div class="row flex-column justify-content-start p-5">
-                <div class="col-12 col-lg-9">
-                    <div class="card filter-card px-2">
-                        <div
-                            class="d-flex align-items-stretch justify-content-around">
-                            <div
-                                class="filter-item no-border d-flex align-items-center justify-content-center">
-                                <img src="assets/icons/filter.svg" />
-                            </div>
-                            <div class="filter-item d-flex align-items-center">
-                                <strong>Filter By</strong>
-                            </div>
-                            <div class="filter-item d-flex align-items-center">
-                                <p-select [options]="products"
-                                    [(ngModel)]="selectedPrice"
-                                    optionLabel="total_price"
-                                    placeholder="Price"
-                                    class="w-full md:w-56" />
-                            </div>
-                            <div class="filter-item d-flex align-items-center">
-                                <p-select [options]="products"
-                                    [(ngModel)]="selectedOrderType"
-                                    optionLabel="order_id"
-                                    placeholder="Order Type"
-                                    class="w-full md:w-56" />
-                            </div>
+    <div class="card filter-card">
+        <div class="row align-items-center">
 
-                            <div class="filter-item d-flex align-items-center">
-                                <p-select [options]="status"
-                                    [(ngModel)]="selectedStatus"
-                                    optionLabel="name"
-                                    placeholder="Order Status"
-                                    class="w-full md:w-56" />
-                            </div>
-                            <div class="filter-item d-flex align-items-center">
-                                <button (click)="resetFiltered()"
-                                    class="btn text-danger d-flex align-items-center p-0"
-                                    type="button">
-                                    <img src="/assets/icons/reset-icon.svg"
-                                        class="me-2" />
-                                    <span>Reset Filter</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-12 col-lg-2 text-center">
+                <div class="p-2">
+                    <img src="assets/icons/filter.svg" />
                 </div>
 
-                <div class="col col-md-10 col-lg-12 pt-4">
-                    <div class="card">
-                        <div class="card-body order-table">
-                            <p-table *ngIf="filteredOrders.length"
-                                [value]="filteredOrders"
-                                [tableStyle]="{ 'min-width': '65rem' }">
-                                <ng-template #header>
-                                    <tr>
-                                        <th>User ID</th>
-                                        <th>Order ID</th>
-                                        <th>Price</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template #body let-product>
-                                    <tr>
-                                        <td>{{ product.user_id }}</td>
-                                        <td>{{ product.order_id}}</td>
-                                        <td>{{ product.total_price }}</td>
-                                        <td>
+            </div>
+            <div class="col-12 col-lg-2 filter-item">
+                <div class="p-2 text-center">
+                    <strong>Filter By</strong>
 
-                                            <div
-                                                [ngClass]="product.status == 'Delivered' ? 'bg-deliver text-center p-2 col-5':
-                            product.status == 'Processing' ? 'bg-processing text-center p-2 col-5':  
-                            product.status == 'Shipped' ? 'bg-shipped text-center p-2 col-5':''
+                </div>
+            </div>
+            <div class="col-12 col-lg-2 filter-item text-center">
+                <p-select [options]="products"
+                    [(ngModel)]="selectedPrice"
+                    optionLabel="total_price"
+                    placeholder="Price"
+                    class="w-full md:100%" />
+            </div>
+            <div class="col-12 col-lg-2 filter-item text-center">
+                <p-select [options]="products"
+                    [(ngModel)]="selectedOrderType"
+                    optionLabel="order_id"
+                    placeholder="Order Type"
+                    class="w-full md:100%" />
+            </div>
+            <div class="col-12 col-lg-2 filter-item text-center">
+                <p-select [options]="status"
+                    [(ngModel)]="selectedStatus"
+                    optionLabel="name"
+                    placeholder="Order Status"
+                    class="w-full md:100%" />
+            </div>
+            <div class="col-12 col-lg-2">
+                <div
+                    class="filter-item d-flex align-items-center justify-content-center text-center">
+                    <button (click)="resetFiltered()"
+                        class="btn text-danger d-flex align-items-center p-0"
+                        type="button">
+                        <img src="/assets/icons/reset-icon.svg"
+                            class="me-2" />
+                        <span>Reset Filter</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col col-md-10 col-lg-12 pt-4">
+            <div class="card">
+                <div class="card-body order-table">
+                    <p-table *ngIf="filteredOrders"
+                        [value]="filteredOrders">
+                        <ng-template #header>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Order ID</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template #body let-product>
+                            <tr>
+                                <td>{{ product.user_id }}</td>
+                                <td>{{ product.order_id}}</td>
+                                <td>{{ product.total_price }}</td>
+                                <td>
+
+                                    <div
+                                        [ngClass]="product.status == 'Delivered' ? 'bg-deliver text-center p-2 col-12 col-lg-5':
+                            product.status == 'Processing' ? 'bg-processing text-center p-2 col-12 col-lg-5':  
+                            product.status == 'Shipped' ? 'bg-shipped text-center p-2 col-12 col-lg-5':''
                             ">
-                                                <span
-                                                    [ngClass]="product.status == 'Delivered' ? 'text-deliver':
+                                        <span
+                                            [ngClass]="product.status == 'Delivered' ? 'text-deliver':
                             product.status == 'Processing' ? 'text-processing':  
                             product.status == 'Shipped' ? 'text-shipped':''
                             ">
-                                                    {{product.status }}
+                                            {{product.status }}
 
-                                                </span>
-                                            </div>
+                                        </span>
+                                    </div>
 
-                                        </td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
+                                </td>
+                            </tr>
+                        </ng-template>
 
-                        </div>
-                    </div>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="4"
+                                    class="text-center p-4 text-muted">
+                                    No orders found.
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
                 </div>
-                <mat-paginator [length]="100"
-                    [pageSize]="10"
-                    [pageSizeOptions]="[5, 10, 25, 100]"
-                    aria-label="Select page">
-                </mat-paginator>
             </div>
         </div>
     </div>
 
+    <div
+        class="d-flex justify-content-end align-items-center paginator-container mt-3">
+        <mat-paginator #paginator
+            class="demo-paginator"
+            (page)="handlePageEvent($event)"
+            [length]="length"
+            [pageSize]="pageSize"
+            [disabled]="disabled"
+            [showFirstLastButtons]="showFirstLastButtons"
+            [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+            [hidePageSize]="hidePageSize"
+            [pageIndex]="pageIndex"
+            aria-label="Select page">
+        </mat-paginator>
+
+    </div>
 </div>

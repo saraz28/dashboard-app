@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderListsService } from './services/order-lists-service';
 import { HttpClientModule } from '@angular/common/http';
 import { orders } from './model/order-lists';
+import { PageEvent } from '@angular/material/paginator';
 
 interface Status {
   name: string;
@@ -24,6 +25,18 @@ export class OrderLists implements OnInit {
   selectedStatus: Status | null = null;
   selectedOrderType: orders | null = null;
   selectedPrice: orders | null = null;
+
+  length = 50;
+  pageSize = 10;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+
+  hidePageSize = true;
+  showPageSizeOptions = true;
+  showFirstLastButtons = false;
+  disabled = false;
+
+  pageEvent!: PageEvent;
 
   ngOnInit() {
     this.orderListsService.getProducts().subscribe((data) => {
@@ -65,23 +78,19 @@ export class OrderLists implements OnInit {
     this.selectedPrice = null;
     this.selectedStatus = null;
   }
-  // get filteredOrders() {
-  //   if (!this.selectedStatus) return this.products;
-  //   if (!this.selectedOrderType) return this.products;
 
-  //   if (this.selectedStatus) {
-  //     return this.products.filter(
-  //       (order) => order.status === this.selectedStatus.name
-  //     );
-  //   }
-  //   if (this.selectedOrderType) {
-  //     return this.products.filter((orderType) => {
-  //       console.log('selectedOrderType', this.selectedOrderType.order_id);
-  //       console.log('order', orderType);
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+  }
 
-  //       orderType.order_id === this.selectedOrderType.order_id;
-  //     });
-  //   }
-  //   return this.products;
-  // }
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput
+        .split(',')
+        .map((str) => +str);
+    }
+  }
 }

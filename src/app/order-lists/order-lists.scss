@@ -1,5 +1,17 @@
+.container {
+    position: relative;
+}
+
 ::ng-deep .p-datatable-thead {
     background-color: #D5D5D5 !important;
+}
+
+::ng-deep .p-datatable-tbody>tr:last-child {
+    border: none !important;
+}
+
+tr:last-child {
+    border: none !important;
 }
 
 .order-table {
@@ -34,4 +46,54 @@
 
 .filter-item.no-border {
     border-left: none;
+}
+
+::ng-deep .mat-mdc-paginator {
+    background-color: unset !important;
+}
+
+::ng-deep .mat-mdc-paginator-range-label {
+    position: absolute;
+    left: 0;
+    text-align: left;
+}
+
+::ng-deep .mat-mdc-paginator-range-label::before {
+    content: "Showing";
+}
+
+::ng-deep .mat-mdc-paginator-range-actions {
+    border: 1px solid #D5D5D5;
+    background-color: #FAFBFD;
+    border-radius: 8px;
+}
+
+::ng-deep .mat-mdc-paginator-navigation-previous {
+    border-radius: unset;
+    border-right: 1px solid #D5D5D5;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .p-datatable {
+        min-width: 100%;
+        position: relative;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .p-datatable {
+        min-width: 100%;
+        position: relative;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    .p-datatable {
+        width: 60rem;
+        position: relative;
+        display: block;
+    }
 }
