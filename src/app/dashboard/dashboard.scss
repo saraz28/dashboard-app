@@ -107,6 +107,11 @@
     border: unset
 }
 
+.order-table {
+    border: 1px solid #D5D5D5;
+    border-radius: 0.875rem;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .full-width {
@@ -167,6 +172,14 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+    .full-width {
+        width: 20%;
+    }
+
+    .mid-width {
+        width: 10%;
+    }
+
     .search-input-wrapper {
         width: 50%;
     }

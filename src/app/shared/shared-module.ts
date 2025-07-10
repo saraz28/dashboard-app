@@ -80,7 +80,6 @@ import { SplitterModule } from 'primeng/splitter';
 import { StepperModule } from 'primeng/stepper';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { StepsModule } from 'primeng/steps';
-import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { TerminalModule } from 'primeng/terminal';
 import { TieredMenuModule } from 'primeng/tieredmenu';
@@ -98,32 +97,52 @@ import { RippleModule } from 'primeng/ripple';
 import { StyleClassModule } from 'primeng/styleclass';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DrawerModule } from 'primeng/drawer';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { TableModule } from 'primeng/table';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
-    
-
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    ButtonModule,
-    KnobModule,
-    FormsModule,
-    IconFieldModule,
-    InputIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    DrawerModule,
-    FloatLabelModule,
-    RippleModule,
-    StyleClassModule,
-    TreeTableModule,
-    CardModule,
-    TreeSelectModule,
-    TreeModule,
-    TooltipModule,
-    ToolbarModule,
-  ],
-})
-export class SharedModule {}
+export const SharedModule = [
+  CommonModule,
+  ButtonModule,
+  KnobModule,
+  FormsModule,
+  IconFieldModule,
+  InputIconModule,
+  MatSidenavModule,
+  MatButtonModule,
+  ReactiveFormsModule,
+  DrawerModule,
+  FloatLabelModule,
+  RippleModule,
+  StyleClassModule,
+  TreeTableModule,
+  CardModule,
+  TreeSelectModule,
+  TreeModule,
+  TooltipModule,
+  ToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatListModule,
+  MatToolbarModule,
+  MatIconModule,
+  CommonModule,
+  InputNumberModule,
+  FormsModule,
+  IconFieldModule,
+  InputIconModule,
+  InputTextModule,
+  DrawerModule,
+  ButtonModule,
+  AvatarModule,
+  AvatarGroupModule,
+  TableModule,
+  HttpClientModule,
+  SelectModule,
+  MatPaginatorModule,
+];

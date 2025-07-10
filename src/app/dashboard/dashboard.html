@@ -145,6 +145,10 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home"
                     role="tabpanel" aria-labelledby="v-pills-home-tab">
+                    <h3 class="px-5 pt-5">
+                        Dashboard
+                    </h3>
+
                     <div class="row row-cols-1 row-cols-md-4 g-4 p-5">
                         <div class="col col-md-4 col-lg-3">
                             <div class="card">
@@ -383,234 +387,40 @@
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                     aria-labelledby="v-pills-profile-tab">
-                    <div class="row row-cols-1 row-cols-md-3 g-4 p-5">
+                    <h3 class="px-5 pt-5">
+                        Order Lists
+                    </h3>
+                    <app-order-lists></app-order-lists>
+
+                    <!-- <div class="row p-5">
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row flex-column">
-                                                <div class="col">
-                                                    <h5 class="text-gray"> Total
-                                                        Users</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h3> 40,689</h3>
-                                                </div>
 
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3">
-                                            <img width="50%"
-                                                src="/assets/icons/users-icon.svg"
-                                                class="card-img-top"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <img width="50%"
-                                                        src="/assets/icons/ic-trending-up-24px.svg"
-                                                        class="card-img-top"
-                                                        alt="...">
-                                                </div>
-                                                <div class="col-3">
-                                                    <span
-                                                        style="color: #00B69B;">
-                                                        8.5%
-                                                    </span>
-
-                                                </div>
-
-                                                <div class="col-7">
-                                                    <h6
-                                                        class="text-gray">
-                                                        Up from
-                                                        yesterday</h6>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <app-order-lists></app-order-lists>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+
+                    </div> -->
+
+                    <!-- <div class="row justify-content-center p-5">
+                        <div class="col col-md-10 col-lg-12">
                             <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row flex-column">
-                                                <div class="col">
-                                                    <h5 class="text-gray"> Total
-                                                        Orders</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h3> 40,689</h3>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3">
-                                            <img width="50%"
-                                                src="/assets/icons/order-icon.svg"
-                                                class="card-img-top"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <img width="50%"
-                                                        src="/assets/icons/ic-trending-up-24px.svg"
-                                                        class="card-img-top"
-                                                        alt="...">
-                                                </div>
-                                                <div class="col-3">
-                                                    <span
-                                                        style="color: #00B69B;">
-                                                        8.5%
-                                                    </span>
-
-                                                </div>
-
-                                                <div class="col-7">
-                                                    <h6
-                                                        class="text-gray">
-                                                        Up from
-                                                        yesterday</h6>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                <div class="card-body order-table"> -->
+                    <!-- <app-order-lists></app-order-lists> -->
+                    <!-- </div>
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row flex-column">
-                                                <div class="col">
-                                                    <h5 class="text-gray">
-                                                        Total Sales</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h3> 40,689</h3>
-                                                </div>
+                        </div> -->
 
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3">
-                                            <img width="50%"
-                                                src="/assets/icons/sales-icon.svg"
-                                                class="card-img-top"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <img width="50%"
-                                                        src="/assets/icons/ic-trending-up-24px.svg"
-                                                        class="card-img-top"
-                                                        alt="...">
-                                                </div>
-                                                <div class="col-3">
-                                                    <span
-                                                        style="color: #00B69B;">
-                                                        8.5%
-                                                    </span>
-
-                                                </div>
-
-                                                <div class="col-7">
-                                                    <h6
-                                                        class="text-gray">
-                                                        Up from
-                                                        yesterday</h6>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row flex-column">
-                                                <div class="col">
-                                                    <h5 class="text-gray">
-                                                        Total Pending</h5>
-                                                </div>
-                                                <div class="col">
-                                                    <h3> 40,689</h3>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <div class="col-3">
-                                            <img width="50%"
-                                                src="/assets/icons/pending-icon.svg"
-                                                class="card-img-top"
-                                                alt="...">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <img width="50%"
-                                                        src="/assets/icons/ic-trending-up-24px.svg"
-                                                        class="card-img-top"
-                                                        alt="...">
-                                                </div>
-                                                <div class="col-3">
-                                                    <span
-                                                        style="color: #00B69B;">
-                                                        8.5%
-                                                    </span>
-
-                                                </div>
-
-                                                <div class="col-7">
-                                                    <h6
-                                                        class="text-gray">
-                                                        Up from
-                                                        yesterday</h6>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- </div> -->
+                    <!-- <app-order-lists></app-order-lists> -->
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                     aria-labelledby="v-pills-messages-tab">...</div>
                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                     aria-labelledby="v-pills-settings-tab">...</div>
             </div>
-         </div>
+        </div>
 
     </mat-sidenav-container>

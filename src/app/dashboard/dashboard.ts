@@ -1,46 +1,12 @@
 import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { SharedModule } from '../shared/shared-module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatListModule } from '@angular/material/list';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { FormsModule } from '@angular/forms';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { InputTextModule } from 'primeng/inputtext';
-import { Drawer, DrawerModule } from 'primeng/drawer';
-import { ButtonModule } from 'primeng/button';
-import { AvatarModule } from 'primeng/avatar';
-import { AvatarGroupModule } from 'primeng/avatargroup';
-import { Ripple } from 'primeng/ripple';
-import { StyleClass } from 'primeng/styleclass';
+import { MatSidenav } from '@angular/material/sidenav';
+import { OrderLists } from '../order-lists/order-lists';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [
-    SharedModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatSlideToggleModule,
-    MatListModule,
-    MatToolbarModule,
-    MatIconModule,
-    CommonModule,
-    InputNumberModule,
-    FormsModule,
-    IconFieldModule,
-    InputIconModule,
-    InputTextModule,
-    DrawerModule,
-    ButtonModule,
-    AvatarModule,
-    AvatarGroupModule,
-  ],
+  imports: [SharedModule, OrderLists],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

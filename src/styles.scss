@@ -44,3 +44,30 @@ button {
     color: #202224;
     opacity: 70%;
 }
+
+.text-deliver {
+    color: #00B69B !important;
+}
+
+.bg-deliver {
+    background: #CCF0EB !important;
+    border-radius: 4.5px;
+}
+
+.bg-processing {
+    background-color: #E0D4FC;
+    border-radius: 4.5px;
+}
+
+.text-processing {
+    color: #6226EF;
+}
+
+.bg-shipped {
+    background-color: #F1D4FF;
+    border-radius: 4.5px;
+}
+
+.text-shipped {
+    color: #BA29FF;
+}

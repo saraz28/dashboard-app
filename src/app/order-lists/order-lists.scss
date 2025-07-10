@@ -1,0 +1,37 @@
+::ng-deep .p-datatable-thead {
+    background-color: #D5D5D5 !important;
+}
+
+.order-table {
+    border-radius: 12px;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+::ng-deep .p-select-label.p-placeholder,
+::ng-deep .p-select-dropdown {
+    color: #202224 !important;
+    font-weight: bold !important;
+}
+
+.p-select {
+    border: unset;
+    background: #F9F9FB;
+    box-shadow: none;
+}
+
+.filter-card {
+    border-radius: 12px;
+    background: #F9F9FB;
+}
+
+.filter-item {
+    padding: 0.75rem 1rem;
+    border-left: 1px solid #dee2e6;
+}
+
+.filter-item.no-border {
+    border-left: none;
+}
