@@ -1,34 +1,254 @@
-<div class="container">
-    <div class="row row-cols-1 row-cols-md-4 g-4 p-5">
-        <div class="col col-md-4 col-lg-3" *ngFor="let item of teamData">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <img [src]="item.photo"
-                                class="circle-img" alt="Profile" />
-
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-center">
-                                {{item.name}}
-                            </h3>
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-center">
-                                {{item.email}}
-                            </h3>
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-center">
-                                Name
-                            </h3>
-                        </div>
-                    </div>
-
-                </div>
+<div *ngIf="!showAddForm">
+    <div class="px-5 p-5">
+        <div class="row">
+            <div class="col-10">
+                <h3>
+                    Team
+                </h3>
+            </div>
+            <div class="col">
+                <button (click)="GotoAdd()"
+                    class="primary-btn btn-sm btn-add"
+                    type="btn"> Add new
+                    member</button>
             </div>
         </div>
-
     </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-4 p-5" >
+            <div class="col col-md-4 col-lg-3" *ngFor="let item of teamData">
+                <div class="card card-pattern">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <img [src]="item.avatar"
+                                    class="circle-img" alt="Profile" />
+
+                            </div>
+                            <div class="col-12 pt-3">
+                                <h5 class="text-center">
+                                    {{item.firstName}}
+                                </h5>
+                            </div>
+                            <div class="col-12">
+                                <h6 class="text-center text-gray">
+                                    {{item.role}}
+                                </h6>
+                            </div>
+                            <div class="col-12">
+                                <h6 class="text-center text-gray">
+                                    {{item.email}}
+                                </h6>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="px-5 p-5">
+    <div class="row">
+
+        <div class="col-12">
+            <div *ngIf="showAddForm" class="mt-3">
+                <div class="row mb-3">
+                    <div class="col-10">
+                        <h3>Add Team Memebr</h3>
+                    </div>
+                    <div class="col">
+                        <button (click)="showAddForm = !showAddForm"
+                            class="primary-btn btn-sm btn-add"
+                            type="button">Back</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body p-5">
+                        <form [formGroup]="formTeam">
+
+                            <div
+                                class="d-flex flex-column align-items-center justify-content-center mb-4">
+
+                                <label for="fileInput">
+                                    <img *ngIf="url; else loading"
+                                        class="upload-image" [src]="url" />
+                                    <ng-template #loading>
+                                        <div
+                                            class="upload-image d-flex align-items-center justify-content-center">
+                                            <i class="pi pi-camera"
+                                                style="font-size: 2rem"></i>
+                                        </div>
+                                    </ng-template>
+                                </label>
+
+                                <input
+                                    id="fileInput"
+                                    type="file"
+                                    class="input-file mt-2 text-center"
+                                    (change)="onSelectFile($event)" />
+                                <div class="p-3">
+                                    <a
+                                        *ngIf="!url"
+                                        (click)="triggerFileInput()"
+                                        class="primary-color text-decoration-none"
+                                        style="cursor: pointer">Upload Photo</a>
+                                    <a
+                                        *ngIf="url"
+                                        (click)="removeImage()"
+                                        class="text-gray text-decoration-none"
+                                        style="cursor: pointer">Remove Photo</a>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-4 p-4">
+                                    <div class="d-flex flex-column gap-2">
+                                        <label class="text-gray"
+                                            for="firstname">First Name</label>
+                                        <input pInputText id="firstname"
+                                            type="text"
+                                            formControlName="firstName"
+                                            placeholder="Enter your first name"
+                                            aria-describedby="username-help" />
+                                        <div
+                                            *ngIf="formTeam.get('firstName')?.touched && formTeam.get('firstName')?.invalid"
+                                            class="text-danger">
+                                            First name is required
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-4 p-4">
+                                    <div class="d-flex flex-column gap-2">
+                                        <label class="text-gray"
+                                            for="lastname">Last
+                                            name</label>
+                                        <input pInputText id="lastname"
+                                            type="text"
+                                            formControlName="lastName"
+                                            placeholder="Enter your last name"
+                                            aria-describedby="username-help" />
+                                        <div
+                                            *ngIf="formTeam.get('lastName')?.touched && formTeam.get('lastName')?.invalid"
+                                            class="text-danger">
+                                            Last name is required
+                                        </div>
+                                    </div></div>
+
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-4 p-4">
+                                    <div class="d-flex flex-column gap-2">
+                                        <label class="text-gray"
+                                            for="email">Your
+                                            Email</label>
+                                        <input pInputText id="email"
+                                            formControlName="email"
+                                            placeholder="Enter your email"
+                                            aria-describedby="username-help" />
+                                        <div
+                                            *ngIf="formTeam.get('email')?.touched && formTeam.get('email')?.errors"
+                                            class="text-danger">
+                                            <div
+                                                *ngIf="formTeam.get('email')?.errors?.['required']">Email
+                                                is required</div>
+                                            <div
+                                                *ngIf="formTeam.get('email')?.errors?.['email']">Invalid
+                                                email format</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-4 p-4">
+                                    <div class="d-flex flex-column gap-2">
+                                        <label class="text-gray"
+                                            for="phone">Phone
+                                            Number</label>
+                                        <input pInputText id="phone"
+                                            type="text"
+                                            formControlName="phoneNumber"
+                                            placeholder="Enter your phone number"
+                                            aria-describedby="username-help" />
+                                        <div
+                                            *ngIf="formTeam.get('phoneNumber')?.touched && formTeam.get('phoneNumber')?.invalid"
+                                            class="text-danger">
+                                            <div
+                                                *ngIf="formTeam.get('phoneNumber')?.errors?.['required']">Phone
+                                                number is required</div>
+                                            <div
+                                                *ngIf="formTeam.get('phoneNumber')?.errors?.['pattern']">Only
+                                                numbers are allowed</div>
+                                        </div>
+
+                                    </div></div>
+
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-4 p-4">
+                                    <div class="d-flex flex-column gap-2">
+                                        <label class="text-gray"
+                                            for="position">Position</label>
+                                        <input pInputText id="position"
+                                            type="text"
+                                            formControlName="role"
+                                            placeholder="Enter your position"
+                                            aria-describedby="username-help" />
+                                        <div
+                                            *ngIf="formTeam.get('role')?.touched && formTeam.get('role')?.invalid"
+                                            class="text-danger">
+                                            Position is required
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-4 p-4">
+                                    <div class="d-flex flex-column gap-2">
+                                        <label class="text-gray"
+                                            for="gender">Gender</label>
+                                        <p-select [options]="gender"
+                                            [(ngModel)]="selectedGender"
+                                            formControlName="gender"
+                                            optionLabel="name"
+                                            placeholder="Select a Gender"
+                                            class="w-full md:w-56" /></div>
+                                    <div
+                                        *ngIf="formTeam.get('gender')?.touched && formTeam.get('gender')?.invalid"
+                                        class="text-danger">
+                                        Gender is required
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-grid gap-2  col-4 mx-auto">
+                                <button (click)="onSubmit()"
+                                    class="primary-btn btn-sm btn-add"
+                                    type="button">Add </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card flex justify-center">
+    <p-dialog [(visible)]="visible" [modal]="true"
+        [style]="{ width: '25rem' }" [draggable]="false" [resizable]="false">
+        <p class="text-center">
+            Team member Successfuly Added
+        </p>
+        <div class="d-grid gap-2  col-4 mx-auto">
+            <button type="btn" class="primary-btn btn-sm"
+                (click)="closeModal()">
+                OK
+            </button>
+        </div>
+    </p-dialog>
 </div>

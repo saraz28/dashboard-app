@@ -1,13 +1,21 @@
 export interface Team {
+  //   id: number;
+  //   name: string;
+  //   company: string;
+  //   username: string;
+  //   email: string;
+  //   address: string;
+  //   zip: string;
+  //   state: string;
+  //   country: string;
+  //   phone: string;
+  //   photo: string;
   id: number;
-  name: string;
-  company: string;
-  username: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: number;
   email: string;
-  address: string;
-  zip: string;
-  state: string;
-  country: string;
-  phone: string;
-  photo: string;
+  role: string;
+  gender: string;
+  avatar: string | null;
 }

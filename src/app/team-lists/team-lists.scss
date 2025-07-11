@@ -1,8 +1,55 @@
-.card-body {
-    background-image: url('/assets/images/Bg.svg');
+.card {
+
+    border-radius: 18px;
+    border: unset;
+
+    &.card-pattern {
+        background-image: url('/assets/images/Pattern.svg');
+        background-position: center;
+        background-size: cover;
+    }
 }
+
+
 .circle-img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 50%; }
+    border-radius: 50%;
+}
+
+.btn-add {
+    background-color: var(--secondary-color);
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 0;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.upload-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ECECEE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.input-file {
+    display: none;
+}
+
+.p-select-label.p-placeholder {
+    color: #202224 !important;
+    opacity: 70%;
+}
+

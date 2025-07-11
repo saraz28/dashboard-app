@@ -10,6 +10,7 @@ export const routes: Routes = [
         return mod.Dashboard;
       }),
   },
+
   {
     path: '**',
     redirectTo: 'dashboard',

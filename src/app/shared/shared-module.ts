@@ -145,4 +145,7 @@ export const SharedModule = [
   HttpClientModule,
   SelectModule,
   MatPaginatorModule,
+  InputGroupModule,
+  InputGroupAddonModule,
+  DialogModule,
 ];
