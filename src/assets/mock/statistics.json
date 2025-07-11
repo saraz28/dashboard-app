@@ -1,0 +1,28 @@
+{
+  "metrics": [
+    {
+      "label": "Total Users",
+      "total": 40689,
+      "totalByYesterday": 37499,
+      "percentage": 8.5
+    },
+    {
+      "label": "Total Orders",
+      "total": 10293,
+      "totalByYesterday":91000,
+      "percentage": 1.3
+    },
+    {
+      "label": "Total Sales",
+      "total": 89000,
+      "totalByYesterday":90000,
+      "percentage": 4.3
+    },
+    {
+      "label": "Total Pending",
+      "total": 2040,
+      "totalByYesterday":1000,
+      "percentage": 1.8
+    }
+  ]
+}

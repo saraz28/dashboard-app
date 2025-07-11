@@ -3,6 +3,8 @@ import { SharedModule } from '../shared/shared-module';
 import { MatSidenav } from '@angular/material/sidenav';
 import { OrderLists } from '../order-lists/order-lists';
 import { TeamLists } from '../team-lists/team-lists';
+import { DashboardService } from './services/dashboard-service';
+import { Metric, Statstics } from './model/statistic';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,8 +23,15 @@ export class Dashboard implements OnInit {
   // closeCallback(e: any): void {
   //   this.drawerRef.close(e);
   // }
-
-  ngOnInit() {}
+  statsticsData: Metric[] = [];
+  isDown!: boolean;
+  constructor(private dashboardService: DashboardService) {}
+  ngOnInit() {
+    this.dashboardService.getStatstics().subscribe((data) => {
+      this.statsticsData = data.metrics;
+      console.log('data', data.metrics);
+    });
+  }
 
   toggleSidebar() {
     // console.log('this.isExpanded', this.isExpanded);

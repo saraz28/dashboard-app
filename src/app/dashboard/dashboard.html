@@ -108,18 +108,20 @@
                 </h3>
 
                 <div class="row row-cols-1 row-cols-md-4 g-4 p-5">
-                    <div class="col col-md-4 col-lg-3">
+                    <div class="col col-md-4 col-lg-3"
+                        *ngFor="let item of statsticsData">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
                                         <div class="row flex-column">
                                             <div class="col">
-                                                <h5 class="text-gray"> Total
-                                                    Users</h5>
+                                                <h5 class="text-gray">
+                                                    {{item.label}}
+                                                </h5>
                                             </div>
                                             <div class="col">
-                                                <h3> 40,689</h3>
+                                                <h3> {{item.total}}</h3>
                                             </div>
 
                                         </div>
@@ -127,7 +129,13 @@
                                     </div>
                                     <div class="col-3">
                                         <img width="50%"
-                                            src="/assets/icons/users-icon.svg"
+                                            [src]="
+                                        item.label === 'Total Users'
+                                          ? '/assets/icons/users-icon.svg'
+                                          : item.label === 'Total Orders'?  '/assets/icons/order-icon.svg'
+                                          : item.label === 'Total Sales'?  '/assets/icons/sales-icon.svg':
+                                          item.label === 'Total Pending'?  '/assets/icons/pending-icon.svg':''
+                                      "
                                             class="card-img-top"
                                             alt="...">
                                     </div>
@@ -137,14 +145,16 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <img width="50%"
-                                                    src="/assets/icons/ic-trending-up-24px.svg"
+                                                    [src]="
+                                                    item.total >= item.totalByYesterday ? '/assets/icons/ic-trending-up-24px.svg':'/assets/icons/ic-trending-down-24px.svg'
+                                                  "
                                                     class="card-img-top"
                                                     alt="...">
                                             </div>
                                             <div class="col-3">
                                                 <span
-                                                    style="color: #00B69B;">
-                                                    8.5%
+                                                    [ngClass]="item.total >= item.totalByYesterday ? 'up-rate-color' : 'down-rate-color'">
+                                                    {{item.percentage}}%
                                                 </span>
 
                                             </div>
@@ -152,8 +162,12 @@
                                             <div class="col-7">
                                                 <h6
                                                     class="text-gray">
-                                                    Up from
-                                                    yesterday</h6>
+                                                    {{item.total >=
+                                                    item.totalByYesterday ? ' Up
+                                                    from
+                                                    yesterday' :' Down from
+                                                    yesterday' }}
+                                                </h6>
                                             </div>
 
                                         </div>
@@ -163,7 +177,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col col-md-4 col-lg-3">
+                    <!-- <div class="col col-md-4 col-lg-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -328,7 +342,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row p-5">
                     <div class="col">
