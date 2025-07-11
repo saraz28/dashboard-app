@@ -37,7 +37,7 @@
                     </button>
                 </div>
 
-                <!-- Products -->
+                <!-- Order Lists -->
                 <div class="d-flex align-items-stretch pe-4">
                     <div
                         [ngClass]="activeTab === 'profile' ? 'border-line':'border-line-padding'"></div>
@@ -52,10 +52,10 @@
                         <div class="d-flex flex-row-reverse"
                             [ngClass]="isExpanded || isShowing ? 'justify-content-end':'justify-content-center'">
                             <span *ngIf="isExpanded || isShowing"
-                                class="p-2">Products</span>
+                                class="p-2">Order Lists</span>
                             <div class="p-2">
                                 <img class="icon-selected"
-                                    src="/assets/icons/products-icon.svg" />
+                                    src="/assets/icons/orders_icon.svg" />
                             </div>
                         </div>
                     </button>

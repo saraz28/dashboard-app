@@ -26,8 +26,8 @@ export class OrderLists implements OnInit {
   selectedOrderType: orders | null = null;
   selectedPrice: orders | null = null;
 
-  length = 50;
-  pageSize = 10;
+  length = 0;
+  pageSize = 3;
   pageIndex = 0;
   pageSizeOptions = [5, 10, 25];
 
@@ -37,10 +37,13 @@ export class OrderLists implements OnInit {
   disabled = false;
 
   pageEvent!: PageEvent;
+  pagedOrders: orders[] = [];
 
   ngOnInit() {
+    console.log('', this.products);
     this.orderListsService.getProducts().subscribe((data) => {
       this.products = data;
+      this.updatePagedOrders();
     });
 
     this.status = [
@@ -50,9 +53,13 @@ export class OrderLists implements OnInit {
     ];
   }
 
+  onFilterChange() {
+    this.pageIndex = 0;
+    this.updatePagedOrders();
+  }
   get filteredOrders() {
     let filtered = this.products;
-
+    // let filtered: any[] = [];
     if (this.selectedStatus) {
       filtered = filtered.filter(
         (order) => order.status === this.selectedStatus?.name
@@ -77,20 +84,24 @@ export class OrderLists implements OnInit {
     this.selectedOrderType = null;
     this.selectedPrice = null;
     this.selectedStatus = null;
+    this.pageIndex = 0;
+    this.updatePagedOrders();
   }
 
+  updatePagedOrders() {
+    const all = this.filteredOrders;
+    this.length = all.length;
+
+    const start = this.pageIndex * this.pageSize;
+    const end = start + this.pageSize;
+
+    this.pagedOrders = all.slice(start, end);
+  }
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
-  }
-
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    if (setPageSizeOptionsInput) {
-      this.pageSizeOptions = setPageSizeOptionsInput
-        .split(',')
-        .map((str) => +str);
-    }
+    this.updatePagedOrders();
   }
 }

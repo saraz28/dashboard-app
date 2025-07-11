@@ -17,15 +17,17 @@
                 </div>
             </div>
             <div class="col-12 col-lg-2 filter-item text-center">
-                <p-select [options]="products"
+                <p-select [options]="pagedOrders"
                     [(ngModel)]="selectedPrice"
+                    (onChange)="onFilterChange()"
                     optionLabel="total_price"
                     placeholder="Price"
                     class="w-full md:100%" />
             </div>
             <div class="col-12 col-lg-2 filter-item text-center">
-                <p-select [options]="products"
+                <p-select [options]="pagedOrders"
                     [(ngModel)]="selectedOrderType"
+                    (onChange)="onFilterChange()"
                     optionLabel="order_id"
                     placeholder="Order Type"
                     class="w-full md:100%" />
@@ -33,6 +35,7 @@
             <div class="col-12 col-lg-2 filter-item text-center">
                 <p-select [options]="status"
                     [(ngModel)]="selectedStatus"
+                    (onChange)="onFilterChange()"
                     optionLabel="name"
                     placeholder="Order Status"
                     class="w-full md:100%" />
@@ -57,8 +60,9 @@
         <div class="col col-md-10 col-lg-12 pt-4">
             <div class="card">
                 <div class="card-body order-table">
-                    <p-table *ngIf="filteredOrders"
-                        [value]="filteredOrders">
+                    <p-table
+                        *ngIf="pagedOrders"
+                        [value]="pagedOrders">
                         <ng-template #header>
                             <tr>
                                 <th>User ID</th>
