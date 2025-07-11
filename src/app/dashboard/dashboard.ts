@@ -2,11 +2,12 @@ import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { SharedModule } from '../shared/shared-module';
 import { MatSidenav } from '@angular/material/sidenav';
 import { OrderLists } from '../order-lists/order-lists';
+import { TeamLists } from '../team-lists/team-lists';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SharedModule, OrderLists],
+  imports: [SharedModule, OrderLists, TeamLists],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
