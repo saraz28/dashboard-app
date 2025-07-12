@@ -1,8 +1,11 @@
 import {
   Component,
   EventEmitter,
+  inject,
   Input,
+  OnDestroy,
   Output,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { SharedModule } from '../shared-module';
@@ -13,6 +16,7 @@ import { Dashboard } from '../../dashboard/dashboard';
 import { TeamLists } from '../../team-lists/team-lists';
 import { Products } from '../../products/products';
 import { SearchService } from '../search/search-service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-side-bar',
@@ -21,19 +25,40 @@ import { SearchService } from '../search/search-service';
   templateUrl: './side-bar.html',
   styleUrls: ['./side-bar.scss'],
 })
-export class SideBar {
+export class SideBar implements OnDestroy {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   @Input() search: string = '';
   @Output() searchChange = new EventEmitter<string>();
 
-  constructor() {}
+  protected readonly isMobile = signal(true);
+
+  private readonly _mobileQuery: MediaQueryList;
+  private readonly _mobileQueryListener: () => void;
 
   searchValue = '';
 
   isExpanded: boolean = false;
   isShowing = false;
   activeTab: string = 'dashboard';
-  
+
+  constructor() {
+    const media = inject(MediaMatcher);
+    this._mobileQuery = media.matchMedia(
+      '(pointer: coarse), (max-width: 1199px)'
+    );
+    this.isMobile.set(this._mobileQuery.matches);
+
+    this._mobileQueryListener = () => {
+      this.isMobile.set(this._mobileQuery.matches);
+      // Optionally auto-close sidenav on resize to mobile
+      if (this._mobileQuery.matches && this.sidenav) {
+        this.sidenav.close();
+      }
+    };
+
+    this._mobileQuery.addEventListener('change', this._mobileQueryListener);
+  }
+
   // to shared search between component
   onSearchChange(value: string) {
     this.search = value;
@@ -54,5 +79,14 @@ export class SideBar {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  }
+
+  closeIfMobile() {
+    if (this.isMobile()) {
+      this.sidenav.close();
+    }
+  }
+  ngOnDestroy(): void {
+    this._mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
 }

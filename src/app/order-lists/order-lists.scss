@@ -1,7 +1,9 @@
+//paginator alignment 
 .container {
     position: relative;
 }
 
+// custom table style
 ::ng-deep .p-datatable-thead {
     background-color: #D5D5D5 !important;
 }
@@ -18,17 +20,13 @@ tr:last-child {
     border-radius: 12px;
 }
 
-.card {
-    border-radius: 12px;
-}
-
-
 .p-select {
     border: unset;
     background: #F9F9FB;
     box-shadow: none;
 }
 
+// filter bar style
 .filter-card {
     border-radius: 12px;
     background: #F9F9FB;
@@ -44,6 +42,7 @@ tr:last-child {
     border-left: none;
 }
 
+// custom paginator style
 ::ng-deep .mat-mdc-paginator {
     background-color: unset !important;
 }

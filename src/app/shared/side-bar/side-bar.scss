@@ -1,39 +1,6 @@
+//custome drawer style
 .mat-drawer-container {
     background: #F5F6FA;
-}
-
-
-.sidenav {
-    user-select: none;
-}
-
-.full-width {
-    width: 20%;
-}
-
-.mid-width {
-    width: 10%;
-}
-
-.menu-button {
-    transition: 300ms ease-in-out;
-    transform: rotate(0deg);
-}
-
-.menu-button.rotated {
-    transform: rotate(180deg);
-}
-
-.submenu {
-    overflow-y: hidden;
-    transition: transform 300ms ease;
-    transform: scaleY(0);
-    transform-origin: top;
-    padding-left: 30px;
-}
-
-.submenu.expanded {
-    transform: scaleY(1);
 }
 
 .mat-toolbar {
@@ -45,28 +12,15 @@
     border: 0;
     border-top-right-radius: unset;
     border-bottom-right-radius: unset;
-    // width: 20%;
 }
 
-.mat-drawer-inner-container {
-    background: white;
-}
-
-// .p-inputtext {
-//     border-radius: 30px !important;
-// }
 .search-input {
     border-radius: 30px !important;
-    // width: 50% !important;
     background: #F5F6FA;
     border: 1px solid #D5D5D5;
 }
 
-// .search-input-wrapper {
-//     width: 50% !important;
-// }
-
-
+// nav bar style
 .nav-pills {
     .nav-link {
         color: #202224;
@@ -78,7 +32,6 @@
         }
     }
 }
-
 
 
 .border-line {
@@ -99,18 +52,6 @@
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .full-width {
-        width: 50%;
-    }
-
-    .mat-drawer.mat-drawer-opened.mat-drawer-opened {
-        transform: translate(0);
-    }
-
-    .mid-width {
-        width: 0%;
-    }
-
     .search-input-wrapper {
         width: 100%;
     }
@@ -122,25 +63,12 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
-
     .search-input-wrapper {
         width: 100%;
     }
 
     .search-input {
         width: 100%;
-    }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .full-width {
-        width: 35%;
-    }
-
-    .mid-width {
-        width: 0%;
     }
 }
 
@@ -159,6 +87,11 @@
 @media only screen and (min-width: 1200px) {
     .full-width {
         width: 20%;
+
+        &~.mat-sidenav-content {
+            margin-left: 280px !important;
+            transition: margin-left 0.3s ease;
+        }
     }
 
     .mid-width {

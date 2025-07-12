@@ -49,7 +49,6 @@ export class OrderLists implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    console.log('', this.products);
     this.loadingService.setLoading(true);
     this.orderListsService.getProducts().subscribe((data) => {
       this.products = data;
@@ -128,7 +127,7 @@ export class OrderLists implements OnInit, OnChanges {
     this.pagedOrders = all.slice(start, end);
     this.loadingService.setLoading(false);
   }
-   
+
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;

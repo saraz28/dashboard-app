@@ -39,7 +39,10 @@
                           item.label === 'Total Pending'?  '/assets/icons/pending-icon.svg':''
                       "
                                 class="card-img-top"
-                                alt="...">
+                                [alt]="item.label === 'Total Users' ? 'users-icon' : 
+                                item.label === 'Total Orders' ? 'order-icon'
+                                :item.label === 'Total Sales'? 'sales-icon':
+                                 item.label === 'Total Pending'?'pending-icon':''">
                         </div>
                     </div>
                     <div class="row">
@@ -51,7 +54,7 @@
                                     item.total >= item.totalByYesterday ? '/assets/icons/ic-trending-up-24px.svg':'/assets/icons/ic-trending-down-24px.svg'
                                   "
                                         class="card-img-top"
-                                        alt="...">
+                                        [alt]="item.total >= item.totalByYesterday ? 'trending-up-icon':'trending-down-icon'">
                                 </div>
                                 <div class="col-3 col-md-3 col-lg-3">
                                     <small
@@ -79,181 +82,16 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col col-md-4 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="row flex-column">
-                            <div class="col">
-                                <h5 class="text-gray">
-                                    Total Order</h5>
-                            </div>
-                            <div class="col">
-                                <h3> 40,689</h3>
-                            </div>
 
-                        </div>
-
-                    </div>
-                    <div class="col-3">
-                        <img width="50%"
-                            src="/assets/icons/order-icon.svg"
-                            class="card-img-top"
-                            alt="...">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-2">
-                                <img width="50%"
-                                    src="/assets/icons/ic-trending-up-24px.svg"
-                                    class="card-img-top"
-                                    alt="...">
-                            </div>
-                            <div class="col-3">
-                                <span
-                                    style="color: #00B69B;">
-                                    8.5%
-                                </span>
-
-                            </div>
-
-                            <div class="col-7">
-                                <h6
-                                    class="text-gray">
-                                    Up from
-                                    yesterday</h6>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col col-md-4 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="row flex-column">
-                            <div class="col">
-                                <h5 class="text-gray"> Total
-                                    Sales</h5>
-                            </div>
-                            <div class="col">
-                                <h3> 40,689</h3>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-3">
-                        <img width="50%"
-                            src="/assets/icons/sales-icon.svg"
-                            class="card-img-top"
-                            alt="...">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-2">
-                                <img width="50%"
-                                    src="/assets/icons/ic-trending-up-24px.svg"
-                                    class="card-img-top"
-                                    alt="...">
-                            </div>
-                            <div class="col-3">
-                                <span
-                                    style="color: #00B69B;">
-                                    8.5%
-                                </span>
-
-                            </div>
-
-                            <div class="col-7">
-                                <h6
-                                    class="text-gray">
-                                    Up from
-                                    yesterday</h6>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="col col-md-4 col-lg-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <div class="row flex-column">
-                            <div class="col">
-                                <h5 class="text-gray"> Total
-                                    Pending
-                                </h5>
-                            </div>
-                            <div class="col">
-                                <h3> 40,689</h3>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="col-3">
-                        <img width="50%"
-                            src="/assets/icons/pending-icon.svg"
-                            class="card-img-top"
-                            alt="...">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="row">
-                            <div class="col-2">
-                                <img width="50%"
-                                    src="/assets/icons/ic-trending-up-24px.svg"
-                                    class="card-img-top"
-                                    alt="...">
-                            </div>
-                            <div class="col-3">
-                                <span
-                                    style="color: #00B69B;">
-                                    8.5%
-                                </span>
-
-                            </div>
-
-                            <div class="col-7">
-                                <h6
-                                    class="text-gray">
-                                    Up from
-                                    yesterday</h6>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div> -->
     </div>
     <div class="row p-5">
         <div class="col">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Sales Details</h5>
-
                     <p-chart type="line" [data]="data"
-                        [options]="options" class="h-[30rem]" />
+                        [options]="options" class="h-[30rem]"
+                        style="width: 100%; height: 100%; display: block" />
 
                 </div>
             </div>

@@ -38,7 +38,10 @@ export class Dashboard implements OnInit {
   ) {}
 
   ngOnInit() {
-    const documentStyle = getComputedStyle(document.documentElement);
+    this.getStatsticsData();
+  }
+
+  getStatsticsData() {
     this.loadingService.setLoading(true);
     this.dashboardService.getStatstics().subscribe((data) => {
       this.statsticsData = data.metrics;
@@ -64,6 +67,8 @@ export class Dashboard implements OnInit {
         };
       }
     });
+
+    const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--p-text-color');
     const textColorSecondary = documentStyle.getPropertyValue(
       '--p-text-muted-color'
@@ -71,7 +76,9 @@ export class Dashboard implements OnInit {
     const surfaceBorder = documentStyle.getPropertyValue(
       '--p-content-border-color'
     );
+
     this.options = {
+      responsive: true,
       stacked: false,
       maintainAspectRatio: false,
       aspectRatio: 0.6,
@@ -117,49 +124,11 @@ export class Dashboard implements OnInit {
       },
     };
     this.cd.markForCheck();
-
-    // this.options = {
-    //   responsive: true,
-    //   plugins: {
-    //     legend: {
-    //       position: 'top',
-    //     },
-    //     title: {
-    //       display: true,
-    //       text: 'Today vs Yesterday Metrics',
-    //     },
-    //   },
-    //   scales: {
-    //     y: {
-    //       beginAtZero: true,
-    //     },
-    //   },
-    // };
   }
 
   get searchedStatstics() {
     return this.statsticsData.filter((p) =>
       p.label.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
-  }
-
-  getColor(index: number): string {
-    const colors = ['#42A5F5', '#66BB6A', '#FFA726', '#AB47BC'];
-    return colors[index % colors.length];
-  }
-
-  toggleSidebar() {
-    this.isExpanded = !this.isExpanded;
-  }
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
-
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
   }
 }

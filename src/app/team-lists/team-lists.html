@@ -1,14 +1,14 @@
 <div *ngIf="!showAddForm">
     <div class="px-5 p-5">
         <div class="row justify-content-around">
-            <div class="col-6 col-md-5 col-lg-12">
+            <div class="col-6 col-md-5 col-lg-9">
                 <h3>
                     Team
                 </h3>
             </div>
             <div class="col-6 col-md-5 col-lg-2 text-end">
                 <button (click)="GotoAdd()"
-                    class="primary-btn btn-sm btn-add"
+                    class="btn-sm btn-add"
                     type="btn"> Add new
                     member</button>
             </div>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="col text-end">
                         <button (click)="showAddForm = !showAddForm"
-                            class="primary-btn btn-sm btn-add"
+                            class="btn-sm btn-add"
                             type="button"><i class="pi pi-arrow-right"></i>
                         </button>
                     </div>
@@ -77,7 +77,8 @@
 
                                 <label for="fileInput">
                                     <img *ngIf="url; else loading"
-                                        class="upload-image" [src]="url" />
+                                        class="upload-image" [src]="url"
+                                        alt="uploaded-image" />
                                     <ng-template #loading>
                                         <div
                                             class="upload-image d-flex align-items-center justify-content-center">
@@ -229,7 +230,7 @@
                             </div>
                             <div class="d-grid gap-2  col-4 mx-auto">
                                 <button (click)="onSubmit()"
-                                    class="primary-btn btn-sm btn-add"
+                                    class="btn-sm btn-add"
                                     type="button">Add </button>
                             </div>
                         </form>
@@ -241,6 +242,7 @@
     </div>
 </div>
 
+<!-- show modal on submit -->
 <div class="card flex justify-center">
     <p-dialog [(visible)]="visible" [modal]="true"
         [style]="{ width: '25rem' }" [draggable]="false" [resizable]="false">
