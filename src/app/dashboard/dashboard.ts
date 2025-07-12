@@ -11,11 +11,12 @@ import { OrderLists } from '../order-lists/order-lists';
 import { TeamLists } from '../team-lists/team-lists';
 import { DashboardService } from './services/dashboard-service';
 import { Metric, Statstics } from './model/statistic';
+import { Products } from '../products/products';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SharedModule, OrderLists, TeamLists],
+  imports: [SharedModule, OrderLists, TeamLists, Products],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
@@ -24,12 +25,8 @@ export class Dashboard implements OnInit {
 
   isExpanded: boolean = false;
   isShowing = false;
-  // @ViewChild('drawerRef') drawerRef!: Drawer;
   activeTab: string = 'home';
-  // closeCallback(e: any): void {
-  //   this.drawerRef.close(e);
-  // }
-  // statsticsData: Metric[] = [];
+
   isDown!: boolean;
 
   statsticsData: Metric[] = []; // for raw data

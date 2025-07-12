@@ -16,7 +16,7 @@
             <div class="d-flex align-items-stretch pe-4">
                 <div
                     [ngClass]="activeTab === 'home' ? 'border-line':'border-line-padding'"></div>
-                <button class="nav-link  primary-btn btn-sm flex-grow-1"
+                <button class="nav-link  btn-sm flex-grow-1"
                     id="v-pills-home-tab"
                     [ngClass]="{'active': activeTab === 'home'}"
                     (click)="activeTab = 'home'"
@@ -83,6 +83,28 @@
                 </button>
             </div>
 
+            <div class="d-flex align-items-stretch pe-4">
+                <div
+                    [ngClass]="activeTab === 'productsTab' ? 'border-line':'border-line-padding'"></div>
+                <button class="nav-link flex-grow-1"
+                    id="v-pills-team-tab"
+                    [ngClass]="{'active': activeTab === 'productsTab'}"
+                    (click)="activeTab = 'productsTab'"
+                    data-bs-toggle="pill" data-bs-target="#v-pills-products"
+                    type="button" role="tab" aria-controls="v-pills-products"
+                    [attr.aria-selected]="activeTab === 'productsTab'"
+                    aria-selected="false">
+                    <div class="d-flex flex-row-reverse"
+                        [ngClass]="isExpanded || isShowing ? 'justify-content-end':'justify-content-center'">
+                        <span *ngIf="isExpanded || isShowing"
+                            class="p-2">Products</span>
+                        <div class="p-2">
+                            <img class="icon-selected"
+                                src="/assets/icons/product-icon.svg" />
+                        </div>
+                    </div>
+                </button>
+            </div>
         </div>
 
     </mat-sidenav>
@@ -92,6 +114,7 @@
             <mat-toolbar color="primary" class="example-toolbar">
                 <button mat-icon-button
                     (click)="toggleSidebar()"><mat-icon>menu</mat-icon></button>
+
                 <p-iconfield class="search-input-wrapper">
                     <p-inputicon class="pi pi-search" />
                     <input class="search-input" type="text" pInputText
@@ -361,9 +384,7 @@
             </div>
             <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                 aria-labelledby="v-pills-profile-tab">
-                <h3 class="px-5 pt-5">
-                    Order Lists
-                </h3>
+
                 <app-order-lists></app-order-lists>
 
             </div>
@@ -372,8 +393,10 @@
 
                 <app-team-lists></app-team-lists>
             </div>
-            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                aria-labelledby="v-pills-settings-tab">...</div>
+            <div class="tab-pane fade" id="v-pills-products" role="tabpanel"
+                aria-labelledby="v-pills-products-tab">
+                <app-products></app-products>
+            </div>
         </div>
     </mat-sidenav-content>
 
