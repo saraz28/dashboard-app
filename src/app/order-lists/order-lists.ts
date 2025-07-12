@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { orders } from './model/order-lists';
 import { PageEvent } from '@angular/material/paginator';
 import { App } from '../app';
+import { LoaderService } from '../shared/loader/loader-service';
 
 interface Status {
   name: string;
@@ -15,7 +16,7 @@ interface Status {
   standalone: true,
   imports: [SharedModule],
   templateUrl: './order-lists.html',
-  styleUrl: './order-lists.scss',
+  styleUrls: ['./order-lists.scss'],
 })
 export class OrderLists implements OnInit {
   products: orders[] = [];
@@ -40,15 +41,16 @@ export class OrderLists implements OnInit {
   pageEvent!: PageEvent;
   pagedOrders: orders[] = [];
 
-  private app = inject(App);
+  // private app = inject(App);
+  private loadingService = inject(LoaderService);
 
   ngOnInit() {
     console.log('', this.products);
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
     this.orderListsService.getProducts().subscribe((data) => {
       this.products = data;
       this.updatePagedOrders();
-      this.app.setLoading(false);
+      this.loadingService.setLoading(false);
     });
 
     this.status = [
@@ -93,7 +95,7 @@ export class OrderLists implements OnInit {
   }
 
   updatePagedOrders() {
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
 
     const all = this.filteredOrders;
     this.length = all.length;
@@ -102,7 +104,7 @@ export class OrderLists implements OnInit {
     const end = start + this.pageSize;
 
     this.pagedOrders = all.slice(start, end);
-    this.app.setLoading(false);
+    this.loadingService.setLoading(false);
   }
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;

@@ -10,32 +10,33 @@ import { SharedModule } from '../shared/shared-module';
 import { ProductsService } from './services/products-service';
 import { ProductsDto } from './model/products';
 import { App } from '../app';
+import { LoaderService } from '../shared/loader/loader-service';
 
 @Component({
   selector: 'app-products',
+  standalone: true,
   imports: [SharedModule],
   templateUrl: './products.html',
-  styleUrl: './products.scss',
+  styleUrls: ['./products.scss'],
 })
 export class Products implements OnInit {
-  constructor(
-    private productsService: ProductsService,
-  ) {}
+  constructor(private productsService: ProductsService) {}
 
   products: ProductsDto[] = [];
   images: {} = '';
   productsDetails!: ProductsDto;
-  private app = inject(App);
+  // private app = inject(App);
+  private loadingService = inject(LoaderService);
 
   ngOnInit(): void {
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
     this.productsService.getProducts().subscribe((data) => {
       this.products = data;
       this.images = data;
       this.products.map((item: any) => {
         this.images = item.images;
       });
-      this.app.setLoading(false);
+      this.loadingService.setLoading(false);
     });
   }
 
@@ -62,12 +63,12 @@ export class Products implements OnInit {
 
   getproductsById(id: number) {
     this.visible = true;
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
 
     this.productsService.getProductsById(id).subscribe((data) => {
       this.productsDetails = data;
       console.log('', data);
-      this.app.setLoading(false);
+      this.loadingService.setLoading(false);
     });
   }
 }

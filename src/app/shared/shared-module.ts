@@ -104,6 +104,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { TableModule } from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { Dashboard } from '../dashboard/dashboard';
 
 export const SharedModule = [
   CommonModule,
@@ -151,4 +152,5 @@ export const SharedModule = [
   ChartModule,
   GalleriaModule,
   ProgressSpinnerModule,
+  Dashboard,
 ];

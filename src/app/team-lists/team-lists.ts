@@ -16,7 +16,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { App } from '../app';
+import { LoaderService } from '../shared/loader/loader-service';
 
 interface Gender {
   name: string;
@@ -24,6 +24,7 @@ interface Gender {
 
 @Component({
   selector: 'app-team-lists',
+  standalone: true,
   imports: [SharedModule, ReactiveFormsModule],
   templateUrl: './team-lists.html',
   styleUrl: './team-lists.scss',
@@ -51,7 +52,8 @@ export class TeamLists implements OnInit {
   };
 
   visible: boolean = false;
-  private app = inject(App);
+  // private app = inject(App);
+  private loadingService = inject(LoaderService);
 
   constructor(
     private teamService: TeamService,
@@ -65,10 +67,10 @@ export class TeamLists implements OnInit {
   }
 
   getTeamData() {
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
     this.teamService.getTeam().subscribe((data) => {
       this.teamData = data;
-      this.app.setLoading(false);
+      this.loadingService.setLoading(false);
     });
   }
   // ngAfterViewInit(): void {
@@ -162,12 +164,12 @@ export class TeamLists implements OnInit {
     this.teamDto.gender = this.formTeam.controls['gender'].value.name;
     this.teamDto.role = this.formTeam.controls['role'].value;
     this.teamDto.avatar = this.formTeam.get('avatar')?.value;
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
 
     this.teamService.addNewTeamMember(this.teamDto).subscribe((data) => {
       console.log('', data);
       this.visible = true;
-      this.app.setLoading(false);
+      this.loadingService.setLoading(false);
 
       // setTimeout(() => {
       //   this.visible = true;

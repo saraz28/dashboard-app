@@ -8,19 +8,17 @@ import {
 } from '@angular/core';
 import { SharedModule } from '../shared/shared-module';
 import { MatSidenav } from '@angular/material/sidenav';
-import { OrderLists } from '../order-lists/order-lists';
-import { TeamLists } from '../team-lists/team-lists';
 import { DashboardService } from './services/dashboard-service';
 import { Metric, Statstics } from './model/statistic';
-import { Products } from '../products/products';
 import { App } from '../app';
+import { LoaderService } from '../shared/loader/loader-service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SharedModule, OrderLists, TeamLists, Products],
+  imports: [SharedModule],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss',
+  styleUrls: ['./dashboard.scss'],
 })
 export class Dashboard implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
@@ -34,7 +32,8 @@ export class Dashboard implements OnInit {
   statsticsData: Metric[] = []; // for raw data
   data: any; // for chart data
   options: any;
-  private app = inject(App);
+  // private app = inject(App);
+  private loadingService = inject(LoaderService);
 
   constructor(
     private dashboardService: DashboardService,
@@ -43,10 +42,10 @@ export class Dashboard implements OnInit {
 
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
-    this.app.setLoading(true);
+    this.loadingService.setLoading(true);
     this.dashboardService.getStatstics().subscribe((data) => {
       this.statsticsData = data.metrics;
-      this.app.setLoading(false);
+      this.loadingService.setLoading(false);
 
       console.log('data', data.metrics);
       const salesMetric = data.metrics.find(
