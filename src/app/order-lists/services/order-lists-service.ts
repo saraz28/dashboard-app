@@ -10,7 +10,7 @@ export class OrderListsService {
   apiUrl = 'https://fake-store-api.mock.beeceptor.com';
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<orders[]> {
+  getOrders(): Observable<orders[]> {
     return this.http.get<orders[]>(`${this.apiUrl}/api/orders`);
   }
 }

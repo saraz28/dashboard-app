@@ -65,11 +65,11 @@ export class TeamLists implements OnInit {
     this.teamService.getTeam().subscribe((data) => {
       this.teamData = data;
       this.loadingService.setLoading(false);
+    },(err)=>{
+      
     });
   }
-  // ngAfterViewInit(): void {
-  //   this.teamForm();
-  // }
+
   get searchedTeams() {
     return this.teamData.filter((p) =>
       p.firstName.toLowerCase().includes(this.searchTerm.toLowerCase())

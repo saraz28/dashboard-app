@@ -24,15 +24,22 @@ export class Products implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getProductsData();
+  }
+
+  getProductsData() {
     this.loadingService.setLoading(true);
-    this.productsService.getProducts().subscribe((data) => {
-      this.products = data;
-      this.images = data;
-      this.products.map((item: any) => {
-        this.images = item.images;
-      });
-      this.loadingService.setLoading(false);
-    });
+    this.productsService.getProducts().subscribe(
+      (data) => {
+        this.products = data;
+        this.images = data;
+        this.products.map((item: any) => {
+          this.images = item.images;
+        });
+        this.loadingService.setLoading(false);
+      },
+      (err) => {}
+    );
   }
 
   get searchedProducts() {

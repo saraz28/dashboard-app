@@ -24,7 +24,7 @@ interface Status {
 })
 export class OrderLists implements OnInit, OnChanges {
   @Input() searchTerm: string = '';
-  products: orders[] = [];
+  orders: orders[] = [];
   status: Status[] | undefined;
   selectedStatus: Status | null = null;
   selectedOrderType: orders | null = null;
@@ -49,18 +49,26 @@ export class OrderLists implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    this.loadingService.setLoading(true);
-    this.orderListsService.getProducts().subscribe((data) => {
-      this.products = data;
-      this.updatePagedOrders();
-      this.loadingService.setLoading(false);
-    });
-
+    this.getOrdersData();
     this.status = [
       { name: 'Delivered' },
       { name: 'Shipped' },
       { name: 'Processing' },
     ];
+  }
+
+  getOrdersData() {
+    this.loadingService.setLoading(true);
+    this.orderListsService.getOrders().subscribe(
+      (data) => {
+        this.orders = data;
+        this.updatePagedOrders();
+        this.loadingService.setLoading(false);
+      },
+      (err) => {
+        
+      }
+    );
   }
 
   // handling search
@@ -78,7 +86,7 @@ export class OrderLists implements OnInit, OnChanges {
 
   //  filtering each item and search
   get filteredOrders() {
-    let filtered = this.products;
+    let filtered = this.orders;
 
     if (this.searchTerm && this.searchTerm.trim() !== '') {
       const lowerCase = this.searchTerm.toLowerCase();

@@ -31,7 +31,6 @@ export class SideBar implements OnDestroy {
   @Output() searchChange = new EventEmitter<string>();
 
   protected readonly isMobile = signal(true);
-
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
 
@@ -81,6 +80,7 @@ export class SideBar implements OnDestroy {
     }
   }
 
+  //close sidebar on click nav item
   closeIfMobile() {
     if (this.isMobile()) {
       this.sidenav.close();
