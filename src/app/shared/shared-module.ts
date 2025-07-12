@@ -148,4 +148,5 @@ export const SharedModule = [
   InputGroupModule,
   InputGroupAddonModule,
   DialogModule,
+  ChartModule,
 ];

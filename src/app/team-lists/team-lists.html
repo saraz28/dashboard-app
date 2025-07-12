@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-4 g-4 p-5" >
+        <div class="row row-cols-1 row-cols-md-4 g-4 p-5 pt-0">
             <div class="col col-md-4 col-lg-3" *ngFor="let item of teamData">
                 <div class="card card-pattern">
                     <div class="card-body">
@@ -59,10 +59,11 @@
                     <div class="col-10">
                         <h3>Add Team Memebr</h3>
                     </div>
-                    <div class="col">
+                    <div class="col text-end">
                         <button (click)="showAddForm = !showAddForm"
                             class="primary-btn btn-sm btn-add"
-                            type="button">Back</button>
+                            type="button"><i class="pi pi-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="card">
