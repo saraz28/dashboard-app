@@ -80,7 +80,7 @@
             <div class="card">
                 <div class="card-body order-table">
                     <p-table
-                        *ngIf="pagedOrders.length"
+                        *ngIf="pagedOrders"
                         [value]="pagedOrders">
                         <ng-template #header>
                             <tr>

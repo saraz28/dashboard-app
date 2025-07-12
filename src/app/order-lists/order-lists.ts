@@ -1,9 +1,10 @@
 import { SharedModule } from './../shared/shared-module';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { OrderListsService } from './services/order-lists-service';
 import { HttpClientModule } from '@angular/common/http';
 import { orders } from './model/order-lists';
 import { PageEvent } from '@angular/material/paginator';
+import { App } from '../app';
 
 interface Status {
   name: string;
@@ -39,11 +40,15 @@ export class OrderLists implements OnInit {
   pageEvent!: PageEvent;
   pagedOrders: orders[] = [];
 
+  private app = inject(App);
+
   ngOnInit() {
     console.log('', this.products);
+    this.app.setLoading(true);
     this.orderListsService.getProducts().subscribe((data) => {
       this.products = data;
       this.updatePagedOrders();
+      this.app.setLoading(false);
     });
 
     this.status = [
@@ -59,7 +64,6 @@ export class OrderLists implements OnInit {
   }
   get filteredOrders() {
     let filtered = this.products;
-    // let filtered: any[] = [];
     if (this.selectedStatus) {
       filtered = filtered.filter(
         (order) => order.status === this.selectedStatus?.name
@@ -89,6 +93,8 @@ export class OrderLists implements OnInit {
   }
 
   updatePagedOrders() {
+    this.app.setLoading(true);
+
     const all = this.filteredOrders;
     this.length = all.length;
 
@@ -96,6 +102,7 @@ export class OrderLists implements OnInit {
     const end = start + this.pageSize;
 
     this.pagedOrders = all.slice(start, end);
+    this.app.setLoading(false);
   }
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;

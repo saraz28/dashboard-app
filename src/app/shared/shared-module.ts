@@ -150,4 +150,5 @@ export const SharedModule = [
   DialogModule,
   ChartModule,
   GalleriaModule,
+  ProgressSpinnerModule,
 ];

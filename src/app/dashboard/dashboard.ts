@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
   signal,
   ViewChild,
@@ -12,6 +13,7 @@ import { TeamLists } from '../team-lists/team-lists';
 import { DashboardService } from './services/dashboard-service';
 import { Metric, Statstics } from './model/statistic';
 import { Products } from '../products/products';
+import { App } from '../app';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,6 +34,7 @@ export class Dashboard implements OnInit {
   statsticsData: Metric[] = []; // for raw data
   data: any; // for chart data
   options: any;
+  private app = inject(App);
 
   constructor(
     private dashboardService: DashboardService,
@@ -40,9 +43,11 @@ export class Dashboard implements OnInit {
 
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
-
+    this.app.setLoading(true);
     this.dashboardService.getStatstics().subscribe((data) => {
       this.statsticsData = data.metrics;
+      this.app.setLoading(false);
+
       console.log('data', data.metrics);
       const salesMetric = data.metrics.find(
         (m: any) => m.label === 'Total Sales'

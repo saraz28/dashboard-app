@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
+  inject,
   OnInit,
 } from '@angular/core';
 import { TeamService } from './services/team-service';
@@ -15,6 +16,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { App } from '../app';
 
 interface Gender {
   name: string;
@@ -26,7 +28,7 @@ interface Gender {
   templateUrl: './team-lists.html',
   styleUrl: './team-lists.scss',
 })
-export class TeamLists implements OnInit, AfterViewInit, AfterContentInit {
+export class TeamLists implements OnInit {
   teamData: Team[] = [];
   showAddForm = false;
   url: string = '';
@@ -49,6 +51,7 @@ export class TeamLists implements OnInit, AfterViewInit, AfterContentInit {
   };
 
   visible: boolean = false;
+  private app = inject(App);
 
   constructor(
     private teamService: TeamService,
@@ -62,16 +65,16 @@ export class TeamLists implements OnInit, AfterViewInit, AfterContentInit {
   }
 
   getTeamData() {
+    this.app.setLoading(true);
     this.teamService.getTeam().subscribe((data) => {
       this.teamData = data;
-      console.log('date', data);
+      this.app.setLoading(false);
     });
   }
-  ngAfterViewInit(): void {
-    this.teamForm();
-  }
+  // ngAfterViewInit(): void {
+  //   this.teamForm();
+  // }
 
-  ngAfterContentInit(): void {}
   teamForm() {
     this.formTeam = this.fb.group({
       firstName: ['', Validators.required],
@@ -159,14 +162,17 @@ export class TeamLists implements OnInit, AfterViewInit, AfterContentInit {
     this.teamDto.gender = this.formTeam.controls['gender'].value.name;
     this.teamDto.role = this.formTeam.controls['role'].value;
     this.teamDto.avatar = this.formTeam.get('avatar')?.value;
+    this.app.setLoading(true);
 
     this.teamService.addNewTeamMember(this.teamDto).subscribe((data) => {
       console.log('', data);
-      // this.visible = true;
-      setTimeout(() => {
-        this.visible = true;
-        this.cdRef.detectChanges();
-      });
+      this.visible = true;
+      this.app.setLoading(false);
+
+      // setTimeout(() => {
+      //   this.visible = true;
+      //   this.cdRef.detectChanges();
+      // });
       // this.cdRef.detectChanges();
     });
   }
