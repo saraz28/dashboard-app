@@ -22,11 +22,6 @@ tr:last-child {
     border-radius: 12px;
 }
 
-::ng-deep .p-select-label.p-placeholder,
-::ng-deep .p-select-dropdown {
-    color: #202224 !important;
-    font-weight: bold !important;
-}
 
 .p-select {
     border: unset;
@@ -76,4 +71,10 @@ tr:last-child {
 
 ::ng-deep .mat-mdc-paginator-range-label {
     margin: 0 32px 0 76px !important;
+}
+
+::ng-deep .bold-selector .p-select-label.p-placeholder,
+::ng-deep .bold-selector .p-select-dropdown {
+    color: #202224 !important;
+    font-weight: bold !important;
 }

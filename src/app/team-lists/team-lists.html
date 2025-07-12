@@ -15,8 +15,10 @@
         </div>
     </div>
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-4 g-4 p-5 pt-0">
-            <div class="col col-md-4 col-lg-3" *ngFor="let item of teamData">
+        <div class="row row-cols-1 row-cols-md-4 g-4 p-5 pt-0"
+            *ngIf="searchedTeams">
+            <div class="col col-md-4 col-lg-3"
+                *ngFor="let item of searchedTeams">
                 <div class="card card-pattern">
                     <div class="card-body">
                         <div class="row">
@@ -216,7 +218,7 @@
                                             formControlName="gender"
                                             optionLabel="name"
                                             placeholder="Select a Gender"
-                                            class="w-full md:w-56" /></div>
+                                            class="select-gender w-full md:w-56" /></div>
                                     <div
                                         *ngIf="formTeam.get('gender')?.touched && formTeam.get('gender')?.invalid"
                                         class="text-danger">

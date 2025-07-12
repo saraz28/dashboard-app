@@ -10,9 +10,9 @@
 
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-4 g-4 p-5">
+    <div class="row row-cols-1 row-cols-md-4 g-4 p-5" *ngIf="searchedStatstics">
         <div class="col col-md-4 col-lg-3  d-flex"
-            *ngFor="let item of statsticsData">
+            *ngFor="let item of searchedStatstics">
             <div class="card">
                 <div class="card-body">
                     <div class="row">

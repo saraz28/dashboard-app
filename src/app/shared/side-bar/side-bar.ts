@@ -1,4 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { SharedModule } from '../shared-module';
 import { OrderLists } from '../../order-lists/order-lists';
 
@@ -6,6 +12,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Dashboard } from '../../dashboard/dashboard';
 import { TeamLists } from '../../team-lists/team-lists';
 import { Products } from '../../products/products';
+import { SearchService } from '../search/search-service';
 
 @Component({
   selector: 'app-side-bar',
@@ -16,16 +23,26 @@ import { Products } from '../../products/products';
 })
 export class SideBar {
   @ViewChild('sidenav') sidenav!: MatSidenav;
+  @Input() search: string = '';
+  @Output() searchChange = new EventEmitter<string>();
+
+  constructor() {}
+
+  searchValue = '';
 
   isExpanded: boolean = false;
   isShowing = false;
-  activeTab: string = 'home';
+  activeTab: string = 'dashboard';
+
+  onSearchChange(value: string) {
+    this.search = value;
+    this.searchChange.emit(value);
+  }
 
   toggleSidebar() {
-    // console.log('this.isExpanded', this.isExpanded);
     this.isExpanded = !this.isExpanded;
-    console.log('this.isExpanded', this.isExpanded);
   }
+
   mouseenter() {
     if (!this.isExpanded) {
       this.isShowing = true;

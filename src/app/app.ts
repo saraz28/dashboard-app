@@ -14,9 +14,11 @@ import { LoaderService } from './shared/loader/loader-service';
 })
 export class App {
   protected title = 'dashboard-app';
+  searchValue = '';
+  loading = signal(false);
+
   constructor(public loadingService: LoaderService) {}
 
-  loading = signal(false); // global reactive signal
   get isLoading() {
     return this.loadingService.isLoading();
   }
@@ -24,12 +26,4 @@ export class App {
   setLoading(status: boolean) {
     this.loadingService.setLoading(status);
   }
-  // // Expose a method for child components to trigger the spinner
-  // setLoading(status: boolean) {
-  //   this.loading.set(status);
-  // }
-
-  // get isLoading() {
-  //   return this.loading();
-  // }
 }

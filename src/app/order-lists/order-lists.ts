@@ -1,10 +1,14 @@
 import { SharedModule } from './../shared/shared-module';
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { OrderListsService } from './services/order-lists-service';
-import { HttpClientModule } from '@angular/common/http';
 import { orders } from './model/order-lists';
 import { PageEvent } from '@angular/material/paginator';
-import { App } from '../app';
 import { LoaderService } from '../shared/loader/loader-service';
 
 interface Status {
@@ -18,11 +22,9 @@ interface Status {
   templateUrl: './order-lists.html',
   styleUrls: ['./order-lists.scss'],
 })
-export class OrderLists implements OnInit {
+export class OrderLists implements OnInit, OnChanges {
+  @Input() searchTerm: string = '';
   products: orders[] = [];
-
-  constructor(private orderListsService: OrderListsService) {}
-
   status: Status[] | undefined;
   selectedStatus: Status | null = null;
   selectedOrderType: orders | null = null;
@@ -41,8 +43,10 @@ export class OrderLists implements OnInit {
   pageEvent!: PageEvent;
   pagedOrders: orders[] = [];
 
-  // private app = inject(App);
-  private loadingService = inject(LoaderService);
+  constructor(
+    private orderListsService: OrderListsService,
+    private loadingService: LoaderService
+  ) {}
 
   ngOnInit() {
     console.log('', this.products);
@@ -60,12 +64,30 @@ export class OrderLists implements OnInit {
     ];
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['searchTerm']) {
+      this.pageIndex = 0;
+      this.updatePagedOrders();
+    }
+  }
+
   onFilterChange() {
     this.pageIndex = 0;
     this.updatePagedOrders();
   }
+
   get filteredOrders() {
     let filtered = this.products;
+
+    if (this.searchTerm && this.searchTerm.trim() !== '') {
+      const lowerCase = this.searchTerm.toLowerCase();
+      filtered = filtered.filter((order) =>
+        Object.values(order).some((value) =>
+          String(value).toLowerCase().includes(lowerCase)
+        )
+      );
+    }
+
     if (this.selectedStatus) {
       filtered = filtered.filter(
         (order) => order.status === this.selectedStatus?.name
@@ -96,21 +118,20 @@ export class OrderLists implements OnInit {
 
   updatePagedOrders() {
     this.loadingService.setLoading(true);
-
     const all = this.filteredOrders;
     this.length = all.length;
-
     const start = this.pageIndex * this.pageSize;
     const end = start + this.pageSize;
-
     this.pagedOrders = all.slice(start, end);
     this.loadingService.setLoading(false);
   }
+
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
+    this.searchTerm = '';
     this.updatePagedOrders();
   }
 }

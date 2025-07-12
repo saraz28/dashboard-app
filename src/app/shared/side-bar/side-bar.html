@@ -15,14 +15,14 @@
             <!-- Dashboard -->
             <div class="d-flex align-items-stretch pe-4">
                 <div
-                    [ngClass]="activeTab === 'home' ? 'border-line':'border-line-padding'"></div>
+                    [ngClass]="activeTab === 'dashboard' ? 'border-line':'border-line-padding'"></div>
                 <button class="nav-link  btn-sm flex-grow-1"
-                    id="v-pills-home-tab"
-                    [ngClass]="{'active': activeTab === 'home'}"
-                    (click)="activeTab = 'home'"
-                    data-bs-toggle="pill" data-bs-target="#v-pills-home"
-                    type="button" role="tab" aria-controls="v-pills-home"
-                    [attr.aria-selected]="activeTab === 'home'">
+                    id="v-pills-dashboard-tab"
+                    [ngClass]="{'active': activeTab === 'dashboard'}"
+                    (click)="activeTab = 'dashboard'"
+                    data-bs-toggle="pill" data-bs-target="#v-pills-dashboard"
+                    type="button" role="tab" aria-controls="v-pills-dashboard"
+                    [attr.aria-selected]="activeTab === 'dashboard'">
 
                     <div class="d-flex flex-row-reverse"
                         [ngClass]="isExpanded || isShowing ? 'justify-content-end':'justify-content-center'">
@@ -39,14 +39,14 @@
             <!-- Order Lists -->
             <div class="d-flex align-items-stretch pe-4">
                 <div
-                    [ngClass]="activeTab === 'profile' ? 'border-line':'border-line-padding'"></div>
+                    [ngClass]="activeTab === 'orders' ? 'border-line':'border-line-padding'"></div>
                 <button class="nav-link flex-grow-1"
-                    id="v-pills-profile-tab"
-                    [ngClass]="{'active': activeTab === 'profile'}"
-                    (click)="activeTab = 'profile'"
-                    data-bs-toggle="pill" data-bs-target="#v-pills-profile"
-                    type="button" role="tab" aria-controls="v-pills-profile"
-                    [attr.aria-selected]="activeTab === 'profile'"
+                    id="v-pills-orders-tab"
+                    [ngClass]="{'active': activeTab === 'orders'}"
+                    (click)="activeTab = 'orders'"
+                    data-bs-toggle="pill" data-bs-target="#v-pills-orders"
+                    type="button" role="tab" aria-controls="v-pills-orders"
+                    [attr.aria-selected]="activeTab === 'orders'"
                     aria-selected="false">
                     <div class="d-flex flex-row-reverse"
                         [ngClass]="isExpanded || isShowing ? 'justify-content-end':'justify-content-center'">
@@ -82,7 +82,7 @@
                     </div>
                 </button>
             </div>
-
+            <!-- Products Lists -->
             <div class="d-flex align-items-stretch pe-4">
                 <div
                     [ngClass]="activeTab === 'productsTab' ? 'border-line':'border-line-padding'"></div>
@@ -118,31 +118,36 @@
                 <p-iconfield class="search-input-wrapper">
                     <p-inputicon class="pi pi-search" />
                     <input class="search-input" type="text" pInputText
-                        placeholder="Search" />
+                        placeholder="Search"
+                        [(ngModel)]="searchValue"
+                        (ngModelChange)="onSearchChange($event)" />
                 </p-iconfield>
             </mat-toolbar>
         </mat-toolbar>
 
         <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home"
-                role="tabpanel" aria-labelledby="v-pills-home-tab">
-                <app-dashboard></app-dashboard>
+            <!-- Dashboard content-->
+            <div class="tab-pane fade show active" id="v-pills-dashboard"
+                role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+                <app-dashboard [searchTerm]="searchValue"></app-dashboard>
+            </div>
+            <!-- Order list content-->
+            <div class="tab-pane fade" id="v-pills-orders" role="tabpanel"
+                aria-labelledby="v-pills-orders-tab">
+
+                <app-order-lists [searchTerm]="searchValue"></app-order-lists>
 
             </div>
-            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                aria-labelledby="v-pills-profile-tab">
-
-                <app-order-lists></app-order-lists>
-
-            </div>
+            <!-- Team list content-->
             <div class="tab-pane fade" id="v-pills-team" role="tabpanel"
                 aria-labelledby="v-pills-team-tab">
 
-                <app-team-lists></app-team-lists>
+                <app-team-lists [searchTerm]="searchValue"></app-team-lists>
             </div>
+            <!-- Products content-->
             <div class="tab-pane fade" id="v-pills-products" role="tabpanel"
                 aria-labelledby="v-pills-products-tab">
-                <app-products></app-products>
+                <app-products [searchTerm]="searchValue"></app-products>
             </div>
         </div>
     </mat-sidenav-content>

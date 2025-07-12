@@ -1,16 +1,14 @@
 import {
   ChangeDetectorRef,
   Component,
-  inject,
+  Input,
   OnInit,
-  signal,
   ViewChild,
 } from '@angular/core';
 import { SharedModule } from '../shared/shared-module';
 import { MatSidenav } from '@angular/material/sidenav';
 import { DashboardService } from './services/dashboard-service';
-import { Metric, Statstics } from './model/statistic';
-import { App } from '../app';
+import { Metric } from './model/statistic';
 import { LoaderService } from '../shared/loader/loader-service';
 
 @Component({
@@ -22,6 +20,7 @@ import { LoaderService } from '../shared/loader/loader-service';
 })
 export class Dashboard implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
+  @Input() searchTerm: string = '';
 
   isExpanded: boolean = false;
   isShowing = false;
@@ -32,11 +31,10 @@ export class Dashboard implements OnInit {
   statsticsData: Metric[] = []; // for raw data
   data: any; // for chart data
   options: any;
-  // private app = inject(App);
-  private loadingService = inject(LoaderService);
 
   constructor(
     private dashboardService: DashboardService,
+    private loadingService: LoaderService,
     private cd: ChangeDetectorRef
   ) {}
 
@@ -153,6 +151,12 @@ export class Dashboard implements OnInit {
     //     },
     //   },
     // };
+  }
+
+  get searchedStatstics() {
+    return this.statsticsData.filter((p) =>
+      p.label.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
   getColor(index: number): string {

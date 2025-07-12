@@ -1,15 +1,7 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  model,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedModule } from '../shared/shared-module';
 import { ProductsService } from './services/products-service';
 import { ProductsDto } from './model/products';
-import { App } from '../app';
 import { LoaderService } from '../shared/loader/loader-service';
 
 @Component({
@@ -20,13 +12,16 @@ import { LoaderService } from '../shared/loader/loader-service';
   styleUrls: ['./products.scss'],
 })
 export class Products implements OnInit {
-  constructor(private productsService: ProductsService) {}
-
+  @Input() searchTerm: string = '';
   products: ProductsDto[] = [];
   images: {} = '';
   productsDetails!: ProductsDto;
-  // private app = inject(App);
-  private loadingService = inject(LoaderService);
+  visible: boolean = false;
+
+  constructor(
+    private productsService: ProductsService,
+    private loadingService: LoaderService
+  ) {}
 
   ngOnInit(): void {
     this.loadingService.setLoading(true);
@@ -40,7 +35,11 @@ export class Products implements OnInit {
     });
   }
 
-  visible: boolean = false;
+  get searchedProducts() {
+    return this.products.filter((p) =>
+      p.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
   showDialog() {
     this.visible = true;

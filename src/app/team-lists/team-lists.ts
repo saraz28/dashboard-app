@@ -1,11 +1,4 @@
-import {
-  AfterContentInit,
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { TeamService } from './services/team-service';
 import { Team } from './model/team';
 import { SharedModule } from '../shared/shared-module';
@@ -30,6 +23,7 @@ interface Gender {
   styleUrl: './team-lists.scss',
 })
 export class TeamLists implements OnInit {
+  @Input() searchTerm: string = '';
   teamData: Team[] = [];
   showAddForm = false;
   url: string = '';
@@ -52,18 +46,18 @@ export class TeamLists implements OnInit {
   };
 
   visible: boolean = false;
-  // private app = inject(App);
-  private loadingService = inject(LoaderService);
 
   constructor(
     private teamService: TeamService,
     private fb: FormBuilder,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private loadingService: LoaderService
   ) {}
 
   ngOnInit(): void {
     this.getTeamData();
     this.gender = [{ name: 'Male' }, { name: 'Female' }];
+    this.teamForm();
   }
 
   getTeamData() {
@@ -76,7 +70,11 @@ export class TeamLists implements OnInit {
   // ngAfterViewInit(): void {
   //   this.teamForm();
   // }
-
+  get searchedTeams() {
+    return this.teamData.filter((p) =>
+      p.firstName.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
   teamForm() {
     this.formTeam = this.fb.group({
       firstName: ['', Validators.required],
@@ -105,34 +103,11 @@ export class TeamLists implements OnInit {
           this.formTeam.patchValue({ avatar: this.url });
           this.cdRef.detectChanges();
         }, 0);
-        // this.url = reader.result as string;
-        // console.log(this.url);
-        // this.formTeam.patchValue({ avatar: this.url });
       };
 
       reader.readAsDataURL(file);
-      // Don't reset value unless needed: input.value = '';
     }
   }
-
-  // onSelectFile(event: Event) {
-  //   const input = event.target as HTMLInputElement;
-
-  //   if (input.files && input.files[0]) {
-  //     const file = input.files[0];
-  //     const reader = new FileReader();
-  //     this.url = URL.createObjectURL(file);
-  //     this.formTeam.patchValue({ avatar: file });
-  //     console.log(this.url);
-  //     input.value = '';
-  //     // reader.onload = () => {
-  //     //   this.url = reader.result as string;
-  //     //   console.log(this.url);
-  //     // };
-
-  //     // reader.readAsDataURL(file);
-  //   }
-  // }
 
   removeImage() {
     this.url = '';
@@ -170,12 +145,6 @@ export class TeamLists implements OnInit {
       console.log('', data);
       this.visible = true;
       this.loadingService.setLoading(false);
-
-      // setTimeout(() => {
-      //   this.visible = true;
-      //   this.cdRef.detectChanges();
-      // });
-      // this.cdRef.detectChanges();
     });
   }
 }
