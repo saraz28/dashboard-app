@@ -12,11 +12,11 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-11 p-4">
-            <div class="col col-md-10 col-lg-11 pt-4">
+        <div class="col-11 col-md-10 p-4">
+            <div class="col col-md-12 col-lg-11 pt-4">
                 <div class="row align-items-center filter-card">
 
-                    <div class="col-12 col-lg-1">
+                    <div class="col-12 col-md-1 col-lg-1">
                         <div class="p-2">
                             <div
                                 class="d-flex align-items-center justify-content-center">
@@ -26,13 +26,13 @@
                         </div>
 
                     </div>
-                    <div class="col-12 col-lg-2 filter-item">
+                    <div class="col-12 col-md-4 col-lg-2 filter-item">
                         <div class="p-2 ">
                             <strong>Filter By</strong>
 
                         </div>
                     </div>
-                    <div class="col-12 col-lg-2 filter-item ">
+                    <div class="col-12 col-md-4 col-lg-2 filter-item ">
                         <p-select [options]="pagedOrders"
                             [(ngModel)]="selectedPrice"
                             (onChange)="onFilterChange()"
@@ -40,7 +40,7 @@
                             placeholder="Price"
                             class="bold-selector w-full md:100%" />
                     </div>
-                    <div class="col-12 col-lg-2 filter-item ">
+                    <div class="col-12 col-md-4 col-lg-2 filter-item ">
                         <p-select [options]="pagedOrders"
                             [(ngModel)]="selectedOrderType"
                             (onChange)="onFilterChange()"
@@ -48,7 +48,7 @@
                             placeholder="Order Type"
                             class="bold-selector w-full md:100%" />
                     </div>
-                    <div class="col-12 col-lg-2 filter-item ">
+                    <div class="col-12 col-md-4 col-lg-2 filter-item ">
                         <p-select [options]="status"
                             [(ngModel)]="selectedStatus"
                             (onChange)="onFilterChange()"
@@ -56,7 +56,7 @@
                             placeholder="Order Status"
                             class="bold-selector w-full md:100%" />
                     </div>
-                    <div class="col-12 col-lg-2 filter-item ">
+                    <div class="col-12 col-md-4 col-lg-2 filter-item ">
                         <div class="p-2 ">
                             <div
                                 class="d-flex align-items-center justify-content-center">

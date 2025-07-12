@@ -75,6 +75,7 @@ export class TeamLists implements OnInit {
       p.firstName.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+
   teamForm() {
     this.formTeam = this.fb.group({
       firstName: ['', Validators.required],
@@ -90,6 +91,7 @@ export class TeamLists implements OnInit {
     });
   }
 
+  // handling upload image
   onSelectFile(event: Event) {
     const input = event.target as HTMLInputElement;
 
@@ -109,26 +111,28 @@ export class TeamLists implements OnInit {
     }
   }
 
-  removeImage() {
-    this.url = '';
-    console.log(this.url);
-  }
-
-  GotoAdd() {
-    this.showAddForm = !this.showAddForm;
-  }
-
   triggerFileInput() {
     const fileInput = document.getElementById('fileInput') as HTMLInputElement;
     if (fileInput) {
       fileInput.click();
     }
   }
+  // remove image after uplaod
+  removeImage() {
+    this.url = '';
+    console.log(this.url);
+  }
+
+  // navigate to add new team member form
+  GotoAdd() {
+    this.showAddForm = !this.showAddForm;
+  }
 
   closeModal() {
     this.showAddForm = !this.showAddForm;
     this.visible = false;
   }
+
   onSubmit() {
     console.log(this.formTeam.value);
 

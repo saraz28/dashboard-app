@@ -33,7 +33,8 @@ export class SideBar {
   isExpanded: boolean = false;
   isShowing = false;
   activeTab: string = 'dashboard';
-
+  
+  // to shared search between component
   onSearchChange(value: string) {
     this.search = value;
     this.searchChange.emit(value);

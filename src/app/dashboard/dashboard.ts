@@ -22,14 +22,13 @@ export class Dashboard implements OnInit {
   @ViewChild('sidenav') sidenav!: MatSidenav;
   @Input() searchTerm: string = '';
 
+  // toggle side bar
   isExpanded: boolean = false;
   isShowing = false;
-  activeTab: string = 'home';
 
-  isDown!: boolean;
-
-  statsticsData: Metric[] = []; // for raw data
-  data: any; // for chart data
+  // for chart data
+  statsticsData: Metric[] = [];
+  data: any;
   options: any;
 
   constructor(
@@ -44,13 +43,10 @@ export class Dashboard implements OnInit {
     this.dashboardService.getStatstics().subscribe((data) => {
       this.statsticsData = data.metrics;
       this.loadingService.setLoading(false);
-
-      console.log('data', data.metrics);
       const salesMetric = data.metrics.find(
         (m: any) => m.label === 'Total Sales'
       );
 
-      const labels = ['Yesterday', 'Today'];
       if (salesMetric) {
         this.data = {
           labels: ['Today', 'Yesterday'],
@@ -67,18 +63,6 @@ export class Dashboard implements OnInit {
           ],
         };
       }
-
-      // this.data = {
-      //   labels,
-      //   datasets: this.statsticsData.map((metric, index) => ({
-      //     label: metric.label,
-      //     data: [metric.totalByYesterday, metric.total],
-      //     borderColor: this.getColor(index),
-      //     tension: 0.4,
-      //     fill: false,
-      //   })),
-      // };
-      console.log('Chart data:', this.data);
     });
     const textColor = documentStyle.getPropertyValue('--p-text-color');
     const textColorSecondary = documentStyle.getPropertyValue(
@@ -165,9 +149,7 @@ export class Dashboard implements OnInit {
   }
 
   toggleSidebar() {
-    // console.log('this.isExpanded', this.isExpanded);
     this.isExpanded = !this.isExpanded;
-    console.log('this.isExpanded', this.isExpanded);
   }
   mouseenter() {
     if (!this.isExpanded) {

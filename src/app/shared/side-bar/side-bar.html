@@ -1,7 +1,7 @@
 
 
-<mat-sidenav-container class="example-container" autosize>
-    <mat-sidenav #sidenav class="example-sidenav" mode="side"
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav class="sidenav" mode="side"
         [opened]="true"
         [ngClass]="isExpanded || isShowing ? 'full-width':'mid-width'"
         (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
@@ -110,8 +110,8 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-toolbar color="primary" class="example-toolbar">
-            <mat-toolbar color="primary" class="example-toolbar">
+        <mat-toolbar color="primary" class="toolbar">
+            <mat-toolbar color="primary" class="toolbar">
                 <button mat-icon-button
                     (click)="toggleSidebar()"><mat-icon>menu</mat-icon></button>
 

@@ -10,27 +10,26 @@
 
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-4 g-4 p-5" *ngIf="searchedStatstics">
-        <div class="col col-md-4 col-lg-3  d-flex"
+    <div class="row row-cols-1 row-cols-md-4 p-5" *ngIf="searchedStatstics">
+        <div class="col col-md-6 col-lg-3 p-2"
             *ngFor="let item of searchedStatstics">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
                             <div class="row flex-column">
-                                <div class="col">
+                                <div class="col col-md-12 col-lg-9">
                                     <h5 class="text-gray">
                                         {{item.label}}
                                     </h5>
                                 </div>
-                                <div class="col">
-                                    <h3> {{item.total}}</h3>
+                                <div class="col-md-12 col-lg-12">
+                                    <h4> {{item.total}}</h4>
                                 </div>
-
                             </div>
 
                         </div>
-                        <div class="col-3">
+                        <div class="col-3 col-md-4 col-lg-3">
                             <img width="50%"
                                 [src]="
                         item.label === 'Total Users'
@@ -45,8 +44,8 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="row">
-                                <div class="col-2">
+                            <div class="row align-items-center">
+                                <div class="col-2 col-md-2 col-lg-2">
                                     <img width="50%"
                                         [src]="
                                     item.total >= item.totalByYesterday ? '/assets/icons/ic-trending-up-24px.svg':'/assets/icons/ic-trending-down-24px.svg'
@@ -54,23 +53,23 @@
                                         class="card-img-top"
                                         alt="...">
                                 </div>
-                                <div class="col-3">
-                                    <span
+                                <div class="col-3 col-md-3 col-lg-3">
+                                    <small
                                         [ngClass]="item.total >= item.totalByYesterday ? 'up-rate-color' : 'down-rate-color'">
                                         {{item.percentage}}%
-                                    </span>
+                                    </small>
 
                                 </div>
 
-                                <div class="col-7">
-                                    <h6
+                                <div class="col-7 col-md-4 col-lg-7">
+                                    <small
                                         class="text-gray">
                                         {{item.total >=
                                         item.totalByYesterday ? ' Up
                                         from
                                         yesterday' :' Down from
                                         yesterday' }}
-                                    </h6>
+                                    </small>
                                 </div>
 
                             </div>

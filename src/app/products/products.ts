@@ -41,6 +41,7 @@ export class Products implements OnInit {
     );
   }
 
+  // show dialog on details
   showDialog() {
     this.visible = true;
   }
@@ -60,6 +61,7 @@ export class Products implements OnInit {
     },
   ];
 
+  // get product by id
   getproductsById(id: number) {
     this.visible = true;
     this.loadingService.setLoading(true);

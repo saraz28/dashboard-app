@@ -64,6 +64,7 @@ export class OrderLists implements OnInit, OnChanges {
     ];
   }
 
+  // handling search
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['searchTerm']) {
       this.pageIndex = 0;
@@ -76,6 +77,7 @@ export class OrderLists implements OnInit, OnChanges {
     this.updatePagedOrders();
   }
 
+  //  filtering each item and search
   get filteredOrders() {
     let filtered = this.products;
 
@@ -108,6 +110,7 @@ export class OrderLists implements OnInit, OnChanges {
     return filtered;
   }
 
+  // reset filtering
   resetFiltered() {
     this.selectedOrderType = null;
     this.selectedPrice = null;
@@ -115,7 +118,7 @@ export class OrderLists implements OnInit, OnChanges {
     this.pageIndex = 0;
     this.updatePagedOrders();
   }
-
+  // update pagination
   updatePagedOrders() {
     this.loadingService.setLoading(true);
     const all = this.filteredOrders;
@@ -125,7 +128,7 @@ export class OrderLists implements OnInit, OnChanges {
     this.pagedOrders = all.slice(start, end);
     this.loadingService.setLoading(false);
   }
-
+   
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.length = e.length;
