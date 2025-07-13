@@ -114,3 +114,7 @@ button:disabled {
     border-radius: 18px !important;
     border: unset !important;
 }
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+    border-radius: 18px !important;
+}

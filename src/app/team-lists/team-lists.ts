@@ -10,6 +10,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoaderService } from '../shared/loader/loader-service';
+import Swal from 'sweetalert2';
 
 interface Gender {
   name: string;
@@ -62,12 +63,20 @@ export class TeamLists implements OnInit {
 
   getTeamData() {
     this.loadingService.setLoading(true);
-    this.teamService.getTeam().subscribe((data) => {
-      this.teamData = data;
-      this.loadingService.setLoading(false);
-    },(err)=>{
-      
-    });
+    this.teamService.getTeam().subscribe(
+      (data) => {
+        this.teamData = data;
+        this.loadingService.setLoading(false);
+      },
+      () => {
+        Swal.fire({
+          text: 'Something went wrong while processing your request. Please try again later.',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
+      }
+    );
   }
 
   get searchedTeams() {
@@ -145,10 +154,20 @@ export class TeamLists implements OnInit {
     this.teamDto.avatar = this.formTeam.get('avatar')?.value;
     this.loadingService.setLoading(true);
 
-    this.teamService.addNewTeamMember(this.teamDto).subscribe((data) => {
-      console.log('', data);
-      this.visible = true;
-      this.loadingService.setLoading(false);
-    });
+    this.teamService.addNewTeamMember(this.teamDto).subscribe(
+      (data) => {
+        console.log('', data);
+        this.visible = true;
+        this.loadingService.setLoading(false);
+      },
+      () => {
+        Swal.fire({
+          text: 'Something went wrong while processing your request. Please try again later.',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
+      }
+    );
   }
 }

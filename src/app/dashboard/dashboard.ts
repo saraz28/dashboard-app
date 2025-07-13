@@ -10,6 +10,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { DashboardService } from './services/dashboard-service';
 import { Metric } from './model/statistic';
 import { LoaderService } from '../shared/loader/loader-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -43,30 +44,40 @@ export class Dashboard implements OnInit {
 
   getStatsticsData() {
     this.loadingService.setLoading(true);
-    this.dashboardService.getStatstics().subscribe((data) => {
-      this.statsticsData = data.metrics;
-      this.loadingService.setLoading(false);
-      const salesMetric = data.metrics.find(
-        (m: any) => m.label === 'Total Sales'
-      );
+    this.dashboardService.getStatstics().subscribe(
+      (data) => {
+        this.statsticsData = data.metrics;
+        this.loadingService.setLoading(false);
+        const salesMetric = data.metrics.find(
+          (m: any) => m.label === 'Total Sales'
+        );
 
-      if (salesMetric) {
-        this.data = {
-          labels: ['Today', 'Yesterday'],
-          datasets: [
-            {
-              label: 'Total Sales',
-              data: [salesMetric.total, salesMetric.totalByYesterday],
-              borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
-              yAxisID: 'y',
-              backgroundColor: 'rgba(66,165,245,0.2)',
-              tension: 0.4,
-              fill: true,
-            },
-          ],
-        };
+        if (salesMetric) {
+          this.data = {
+            labels: ['Today', 'Yesterday'],
+            datasets: [
+              {
+                label: 'Total Sales',
+                data: [salesMetric.total, salesMetric.totalByYesterday],
+                borderColor: documentStyle.getPropertyValue('--p-cyan-500'),
+                yAxisID: 'y',
+                backgroundColor: 'rgba(66,165,245,0.2)',
+                tension: 0.4,
+                fill: true,
+              },
+            ],
+          };
+        }
+      },
+      () => {
+        Swal.fire({
+          text: 'Something went wrong while processing your request. Please try again later.',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
       }
-    });
+    );
 
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--p-text-color');

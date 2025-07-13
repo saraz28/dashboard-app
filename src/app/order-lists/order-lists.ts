@@ -10,6 +10,7 @@ import { OrderListsService } from './services/order-lists-service';
 import { orders } from './model/order-lists';
 import { PageEvent } from '@angular/material/paginator';
 import { LoaderService } from '../shared/loader/loader-service';
+import Swal from 'sweetalert2';
 
 interface Status {
   name: string;
@@ -65,8 +66,13 @@ export class OrderLists implements OnInit, OnChanges {
         this.updatePagedOrders();
         this.loadingService.setLoading(false);
       },
-      (err) => {
-        
+      () => {
+        Swal.fire({
+          text: 'Something went wrong while processing your request. Please try again later.',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
       }
     );
   }

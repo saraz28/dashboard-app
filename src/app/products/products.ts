@@ -3,6 +3,7 @@ import { SharedModule } from '../shared/shared-module';
 import { ProductsService } from './services/products-service';
 import { ProductsDto } from './model/products';
 import { LoaderService } from '../shared/loader/loader-service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products',
@@ -38,7 +39,14 @@ export class Products implements OnInit {
         });
         this.loadingService.setLoading(false);
       },
-      (err) => {}
+      () => {
+        Swal.fire({
+          text: 'Something went wrong while processing your request. Please try again later.',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
+      }
     );
   }
 
@@ -73,10 +81,20 @@ export class Products implements OnInit {
     this.visible = true;
     this.loadingService.setLoading(true);
 
-    this.productsService.getProductsById(id).subscribe((data) => {
-      this.productsDetails = data;
-      console.log('', data);
-      this.loadingService.setLoading(false);
-    });
+    this.productsService.getProductsById(id).subscribe(
+      (data) => {
+        this.productsDetails = data;
+        console.log('', data);
+        this.loadingService.setLoading(false);
+      },
+      () => {
+        Swal.fire({
+          text: 'Something went wrong while processing your request. Please try again later.',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
+      }
+    );
   }
 }
