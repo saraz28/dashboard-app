@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 p-3"
-        *ngIf="pagedProducts">
+        *ngIf="pagedProducts.length > 0; else noResults">
         <div class="col col-md-4 col-lg-3"
             *ngFor="let item of pagedProducts">
             <div class="card">
@@ -51,6 +51,11 @@
         </div>
 
     </div>
+    <ng-template #noResults>
+        <div class="text-center text-muted p-5">
+            No products match your search.
+        </div>
+    </ng-template>
     <div
         class="d-flex justify-content-end align-items-center paginator-container mt-3 px-5">
         <mat-paginator #paginator

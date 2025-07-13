@@ -10,7 +10,8 @@
 
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-4 p-5" *ngIf="searchedStatstics">
+    <div class="row row-cols-1 row-cols-md-4 p-5"
+        *ngIf="searchedStatstics.length > 0 ; else noResults">
         <div class="col col-md-6 col-lg-3 p-2"
             *ngFor="let item of searchedStatstics">
             <div class="card">
@@ -82,8 +83,12 @@
                 </div>
             </div>
         </div>
-
     </div>
+    <ng-template #noResults>
+        <div class="text-center text-muted p-5">
+            No data match your search.
+        </div>
+    </ng-template>
     <div class="row p-5">
         <div class="col">
             <div class="card">
