@@ -107,15 +107,24 @@ export class TeamLists implements OnInit {
     if (input.files && input.files[0]) {
       const file = input.files[0];
       const reader = new FileReader();
-
+      this.loadingService.setLoading(true);
       reader.onload = () => {
         setTimeout(() => {
           this.url = reader.result as string;
           this.formTeam.patchValue({ avatar: this.url });
           this.cdRef.detectChanges();
+          this.loadingService.setLoading(false);
         }, 0);
       };
-
+      reader.onerror = () => {
+        this.loadingService.setLoading(false);
+        Swal.fire({
+          text: 'Failed to read file',
+          icon: 'error',
+          showCloseButton: true,
+          showConfirmButton: false,
+        });
+      };
       reader.readAsDataURL(file);
     }
   }
@@ -155,6 +164,10 @@ export class TeamLists implements OnInit {
       (data) => {
         this.visible = true;
         this.loadingService.setLoading(false);
+        this.getTeamData();
+        // reset after submit
+        this.formTeam.reset();
+        this.url = '';
       },
       () => {
         Swal.fire({
