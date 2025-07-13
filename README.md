@@ -27,10 +27,14 @@ This project includes a collapsible sidebar, filterable,searchable and responsiv
 
 ---
 
+## Links
+
+- Live Site URL: [Dashboard app](https://dash-stack-dashboard.netlify.app/)
+
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/dashboard-app.git
+git clone https://github.com/saraz28/dashboard-app.git
 cd dashboard-app
 npm install
 ```
