@@ -6,7 +6,7 @@ This project includes a collapsible sidebar, filterable,searchable and responsiv
 
 ## ScreenShots
 
-![Dashboard Screenshot](/assets/readmeShot/responsive-app.png)
+![Dashboard Screenshot](assets/readmeShot/responsive-app.png)
 
 ## Features
 
