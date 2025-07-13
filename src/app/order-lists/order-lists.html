@@ -81,13 +81,23 @@
                 <div class="card-body order-table">
                     <p-table
                         *ngIf="pagedOrders"
-                        [value]="pagedOrders">
+                        [value]="pagedOrders"
+                        sortMode="single">
                         <ng-template #header>
                             <tr>
-                                <th>User ID</th>
-                                <th>Order ID</th>
-                                <th>Price</th>
-                                <th>Status</th>
+                                <th pSortableColumn="user_id">User ID
+                                    <!-- <p-sorticon field="user_id" /> -->
+                                </th>
+                                <th pSortableColumn="order_id">Order ID
+                                    <!-- <p-sorticon field="order_id" /> -->
+                                </th>
+                                <th pSortableColumn="total_price">Price
+
+                                    <!-- <p-sorticon field="total_price" /> -->
+                                </th>
+                                <th pSortableColumn="status">Status
+                                    <!-- <p-sorticon field="status" /> -->
+                                </th>
                             </tr>
                         </ng-template>
                         <ng-template #body let-product>

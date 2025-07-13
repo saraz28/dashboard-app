@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { KnobModule } from 'primeng/knob';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
+import { IconField, IconFieldModule } from 'primeng/iconfield';
+import { InputIcon, InputIconModule } from 'primeng/inputicon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AvatarModule } from 'primeng/avatar';
@@ -34,7 +34,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { TableModule } from 'primeng/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { Dashboard } from '../dashboard/dashboard';
 
 export const SharedModule = [
   CommonModule,
@@ -82,5 +81,6 @@ export const SharedModule = [
   ChartModule,
   GalleriaModule,
   ProgressSpinnerModule,
-  Dashboard,
+  IconField,
+  InputIcon,
 ];

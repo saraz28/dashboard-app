@@ -11,6 +11,7 @@ import { orders } from './model/order-lists';
 import { PageEvent } from '@angular/material/paginator';
 import { LoaderService } from '../shared/loader/loader-service';
 import Swal from 'sweetalert2';
+import { SortIcon, TableModule } from 'primeng/table';
 
 interface Status {
   name: string;
@@ -19,7 +20,7 @@ interface Status {
 @Component({
   selector: 'app-order-lists',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, TableModule],
   templateUrl: './order-lists.html',
   styleUrls: ['./order-lists.scss'],
 })
@@ -57,6 +58,7 @@ export class OrderLists implements OnInit, OnChanges {
       { name: 'Processing' },
     ];
   }
+  
 
   getOrdersData() {
     this.loadingService.setLoading(true);

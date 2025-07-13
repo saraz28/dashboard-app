@@ -10,9 +10,9 @@
         </div>
     </div>
     <div class="row row-cols-1 row-cols-md-3 g-4 p-3"
-        *ngIf="searchedProducts">
+        *ngIf="pagedProducts">
         <div class="col col-md-4 col-lg-3"
-            *ngFor="let item of searchedProducts">
+            *ngFor="let item of pagedProducts">
             <div class="card">
                 <div
                     class="d-flex justify-content-center align-items-center p-3">
@@ -51,6 +51,21 @@
         </div>
 
     </div>
+    <div
+        class="d-flex justify-content-end align-items-center paginator-container mt-3 px-5">
+        <mat-paginator #paginator
+            class="demo-paginator"
+            (page)="handlePageEvent($event)"
+            [length]="length"
+            [pageSize]="pageSize"
+            [disabled]="disabled"
+            [showFirstLastButtons]="showFirstLastButtons"
+            [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+            [hidePageSize]="hidePageSize"
+            [pageIndex]="pageIndex"
+            aria-label="Select page">
+        </mat-paginator>
+    </div>
 </div>
 
 <div class="card flex justify-center">
@@ -77,7 +92,7 @@
             <div class="col-1 text-gray p-2">
                 Price:
             </div>
-            <div class="col-5 p-2">
+            <div class="primary-color col-5 p-2">
                 {{ '$' +productsDetails.price }}
             </div>
 

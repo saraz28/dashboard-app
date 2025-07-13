@@ -66,6 +66,7 @@ export class TeamLists implements OnInit {
     this.teamService.getTeam().subscribe(
       (data) => {
         this.teamData = data;
+        this.cdRef.detectChanges();
         this.loadingService.setLoading(false);
       },
       () => {
