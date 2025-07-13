@@ -129,7 +129,6 @@ export class TeamLists implements OnInit {
   // remove image after uplaod
   removeImage() {
     this.url = '';
-    console.log(this.url);
   }
 
   // navigate to add new team member form
@@ -143,8 +142,6 @@ export class TeamLists implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formTeam.value);
-
     this.teamDto.firstName = this.formTeam.controls['firstName'].value;
     this.teamDto.lastName = this.formTeam.controls['lastName'].value;
     this.teamDto.email = this.formTeam.controls['email'].value;
@@ -156,7 +153,6 @@ export class TeamLists implements OnInit {
 
     this.teamService.addNewTeamMember(this.teamDto).subscribe(
       (data) => {
-        console.log('', data);
         this.visible = true;
         this.loadingService.setLoading(false);
       },

@@ -84,7 +84,6 @@ export class Products implements OnInit {
     this.productsService.getProductsById(id).subscribe(
       (data) => {
         this.productsDetails = data;
-        console.log('', data);
         this.loadingService.setLoading(false);
       },
       () => {
